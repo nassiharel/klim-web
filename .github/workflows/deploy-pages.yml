@@ -19,6 +19,11 @@ on:
       - '.github/workflows/deploy-pages.yml'
   repository_dispatch:
     types: [marketplace-updated]
+  schedule:
+    # Refresh the docs marketplace catalog page nightly so it tracks
+    # the latest assembled marketplace.yaml from the klim repo without
+    # needing a cross-repo dispatch token.
+    - cron: '30 3 * * *'
   workflow_dispatch:
 
 permissions:

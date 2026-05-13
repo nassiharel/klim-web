@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import https from 'node:https';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
 
@@ -9,56 +10,67 @@ import yaml from 'js-yaml';
 // directory portably via fileURLToPath / path.dirname.
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const TOOLS_DIR = path.resolve(__dirname, '../../marketplace/tools');
-const PACKS_DIR = path.resolve(__dirname, '../../marketplace/packs');
 const OUT = path.resolve(__dirname, '../src/data/marketplace.json');
 
-function loadYamlDir(dir) {
-  return fs.readdirSync(dir)
-    .filter(f => f.endsWith('.yaml') || f.endsWith('.yml'))
-    .map(f => yaml.load(fs.readFileSync(path.join(dir, f), 'utf8')))
-    .filter(Boolean);
+// The assembled marketplace catalog lives in the klim repo's
+// `marketplace` branch. The deploy-pages workflow fetches it via curl
+// before this script runs. Locally we fall back to the user's klim
+// cache, and finally to a remote fetch so `npm run dev` works on a
+// fresh clone.
+const MARKETPLACE_URL =
+  'https://raw.githubusercontent.com/nassiharel/klim/marketplace/marketplace.yaml';
+
+function fetchRemote(url) {
+  return new Promise((resolve, reject) => {
+    https
+      .get(url, res => {
+        if (res.statusCode !== 200) {
+          reject(new Error(`HTTP ${res.statusCode} for ${url}`));
+          return;
+        }
+        const chunks = [];
+        res.on('data', c => chunks.push(c));
+        res.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
+      })
+      .on('error', reject);
+  });
 }
 
-// Try to load enriched github_info from the published marketplace cache.
-// Falls back gracefully if unavailable (CI, fresh clone, etc.).
-function loadGitHubInfo() {
-  const candidates = [
-    // Published marketplace.yaml in repo root (CI-assembled).
-    // Use the already-derived __dirname (Node 18 doesn't have
-    // import.meta.dirname).
-    path.resolve(__dirname, '../../marketplace.yaml'),
-  ];
-
-  // Local klim cache (user's machine) — klim stores all config under
-  // ~/.klim regardless of platform.
-  candidates.push(path.join(os.homedir(), '.klim', 'marketplace', 'marketplace-cache.yaml'));
-
-  for (const p of candidates) {
-    if (fs.existsSync(p)) {
-      try {
-        const data = yaml.load(fs.readFileSync(p, 'utf8'));
-        const toolList = data?.tools || data;
-        if (Array.isArray(toolList)) {
-          const map = {};
-          for (const t of toolList) {
-            if (t.name && t.github_info) map[t.name] = t.github_info;
-          }
-          if (Object.keys(map).length > 0) {
-            console.log(`  Loaded github_info for ${Object.keys(map).length} tools from ${p}`);
-            return map;
-          }
-        }
-      } catch { /* ignore parse errors */ }
+async function loadMarketplace() {
+  // 1. CI-staged marketplace.yaml at repo root (deploy-pages.yml curls
+  //    it before running the build).
+  const repoRoot = path.resolve(__dirname, '../../marketplace.yaml');
+  if (fs.existsSync(repoRoot)) {
+    const stat = fs.statSync(repoRoot);
+    if (stat.size > 100) {
+      console.log(`  Loaded marketplace from ${repoRoot}`);
+      return yaml.load(fs.readFileSync(repoRoot, 'utf8'));
     }
   }
-  console.log('  No enriched marketplace cache found — github_info will be empty');
-  return {};
+
+  // 2. User's local klim cache (best UX for `npm run dev`).
+  const userCache = path.join(
+    os.homedir(),
+    '.klim',
+    'marketplace',
+    'marketplace-cache.yaml',
+  );
+  if (fs.existsSync(userCache)) {
+    console.log(`  Loaded marketplace from ${userCache}`);
+    return yaml.load(fs.readFileSync(userCache, 'utf8'));
+  }
+
+  // 3. Remote fallback.
+  console.log(`  Fetching marketplace from ${MARKETPLACE_URL}`);
+  const body = await fetchRemote(MARKETPLACE_URL);
+  return yaml.load(body);
 }
 
-const githubInfoMap = loadGitHubInfo();
+const data = await loadMarketplace();
+const rawTools = Array.isArray(data?.tools) ? data.tools : [];
+const rawPacks = Array.isArray(data?.packs) ? data.packs : [];
 
-const tools = loadYamlDir(TOOLS_DIR).map(t => ({
+const tools = rawTools.map(t => ({
   name: t.name,
   display_name: t.display_name || t.name,
   category: t.category || 'Other',
@@ -66,10 +78,10 @@ const tools = loadYamlDir(TOOLS_DIR).map(t => ({
   binary_names: Array.isArray(t.binary_names) ? t.binary_names : [],
   github: t.github || null,
   packages: t.packages || {},
-  github_info: githubInfoMap[t.name] || null,
+  github_info: t.github_info || null,
 }));
 
-const packs = loadYamlDir(PACKS_DIR).map(p => ({
+const packs = rawPacks.map(p => ({
   name: p.name,
   display_name: p.display_name || p.name,
   description: p.description || '',
@@ -77,8 +89,12 @@ const packs = loadYamlDir(PACKS_DIR).map(p => ({
   tools: Array.isArray(p.tools) ? p.tools : [],
 }));
 
-tools.sort((a, b) => a.display_name.localeCompare(b.display_name, undefined, { sensitivity: 'base' }));
-packs.sort((a, b) => a.display_name.localeCompare(b.display_name, undefined, { sensitivity: 'base' }));
+tools.sort((a, b) =>
+  a.display_name.localeCompare(b.display_name, undefined, { sensitivity: 'base' }),
+);
+packs.sort((a, b) =>
+  a.display_name.localeCompare(b.display_name, undefined, { sensitivity: 'base' }),
+);
 
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify({ tools, packs }, null, 2));
