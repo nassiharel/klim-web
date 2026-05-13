@@ -1,0 +1,134 @@
+name: Deploy Pages
+
+# GitHub Pages deploy for klim-web: the marketing website lives at the
+# site root and the Starlight docs build is mounted under /docs/.
+#
+# Triggers:
+#   - Pushes to website/** or docs/** rebuild and redeploy.
+#   - The klim repo dispatches `marketplace-updated` after its
+#     Marketplace workflow publishes a fresh catalog.
+#   - Manual dispatch via the Actions tab.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'docs/**'
+      - 'go.mod'
+      - 'go.sum'
+      - '.github/workflows/deploy-pages.yml'
+  repository_dispatch:
+    types: [marketplace-updated]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Pages only stores one in-flight deployment per environment. Cancel
+# any superseded run so a fast burst of pushes doesn't queue up
+# multiple redundant deploys.
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      # Go is needed for the docs catalog generator (gen-marketplace-page.go).
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+
+      # Fetch the assembled marketplace catalog from the klim repo's
+      # `marketplace` branch. When unavailable (e.g. on a fresh fork)
+      # we write a placeholder so the docs catalog page renders empty
+      # rather than failing the build. The placeholder must exceed the
+      # generator's 100-byte size guard to be accepted.
+      - name: Fetch assembled marketplace
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/nassiharel/klim/marketplace/marketplace.yaml -o marketplace.yaml || {
+            cat > marketplace.yaml <<'EOF'
+          # Placeholder marketplace data used when the upstream marketplace
+          # branch is unavailable. The docs catalog page will render as
+          # empty until the klim Marketplace workflow publishes assembled
+          # data.
+          tools: []
+          packs: []
+          EOF
+            echo "marketplace branch not available — using empty placeholder"
+          }
+
+      - name: Generate marketplace catalog page
+        run: go run docs/scripts/gen-marketplace-page.go
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            website/package-lock.json
+            docs/package-lock.json
+
+      # --- Build website (root) ---
+      - name: Install website dependencies
+        working-directory: website
+        run: npm ci
+
+      - name: Build website
+        working-directory: website
+        # When the website is served from a sub-path (project pages),
+        # `site` is the origin only and `base` carries the repo segment.
+        # Switch to KLIM_WEBSITE_SITE=https://klim.dev and
+        # KLIM_WEBSITE_BASE=/ when the custom domain is wired.
+        env:
+          KLIM_WEBSITE_BASE: /${{ github.event.repository.name }}/
+          KLIM_WEBSITE_SITE: https://${{ github.repository_owner }}.github.io
+        run: npm run build
+
+      # --- Build docs (mounted under /docs/) ---
+      - name: Install docs dependencies
+        working-directory: docs
+        run: npm ci
+
+      - name: Build docs
+        working-directory: docs
+        # Astro requires the path-to-deployment to live entirely in
+        # `base` when `site` is set independently. `site` is the origin
+        # only, and `base` carries the full <repo>/docs/ path. For a
+        # custom-domain switch, set KLIM_DOCS_SITE=https://docs.klim.dev
+        # and KLIM_DOCS_BASE=/.
+        env:
+          KLIM_DOCS_BASE: /${{ github.event.repository.name }}/docs/
+          KLIM_DOCS_SITE: https://${{ github.repository_owner }}.github.io
+        run: npm run build
+
+      # --- Combine into a single Pages artifact ---
+      # Layout written into `_pages/`:
+      #   _pages/                  ← website/dist/* (root)
+      #   _pages/docs/             ← docs/dist/* (Starlight)
+      - name: Assemble combined Pages artifact
+        run: |
+          mkdir -p _pages/docs
+          cp -r website/dist/. _pages/
+          cp -r docs/dist/. _pages/docs/
+          test -f _pages/index.html
+          test -f _pages/docs/index.html
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _pages
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

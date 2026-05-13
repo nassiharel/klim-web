@@ -1,0 +1,38 @@
+# Node
+node_modules/
+dist/
+.astro/
+
+# Astro build outputs (per-app)
+website/dist/
+docs/dist/
+website/.astro/
+docs/.astro/
+
+# Generated marketplace data (website)
+website/src/data/marketplace.json
+
+# Generated docs catalog page
+docs/src/content/docs/reference/marketplace.mdx
+
+# Marketplace cache (fetched at build time)
+/marketplace.yaml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.*
+
+# Go
+vendor/
+*.test
+*.out
