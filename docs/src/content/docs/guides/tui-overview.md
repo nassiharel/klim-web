@@ -9,7 +9,8 @@ The Klim TUI is an interactive interface for your developer environment. Launch 
 
 ## Tabs
 
-The TUI has 9 parent tabs, accessible via arrow keys or number keys:
+The TUI has 10 parent tabs, accessible via arrow keys or number keys
+(1-9 + 0):
 
 | Tab | Key | Purpose |
 |-----|-----|---------|
@@ -17,11 +18,12 @@ The TUI has 9 parent tabs, accessible via arrow keys or number keys:
 | **Marketplace** | 2 | Browse and install (sub-tabs: Tools, Packs, For You, Onboard) |
 | **Project** | 3 | Multi-project `.klim.yaml` management |
 | **Dashboard** | 4 | Stats, gauges, category breakdowns |
-| **My Profile** | 5 | Generate / inspect / compare / apply env profile + the **My Score** breakdown (formerly Dashboard's Environment Score) |
-| **Health** | 6 | Environment diagnostics and visual PATH-conflict explorer (sub-tabs: Issues, PATH) |
-| **Security** | 7 | Security audit and policy compliance (sub-tabs: Audit, Compliance) |
-| **Backup** | 8 | Export, import, share, custom packs, saved backups |
-| **Config** | 9 | View and edit settings |
+| **Agents** | 5 | AI agent ecosystem — Claude Code, Copilot CLI, MCPs, sessions (sub-tabs: Marketplaces, Plugins, Skills, MCPs, Sessions). See the [Agents Tab guide](/guides/agents/). |
+| **My Profile** | 6 | Generate / inspect / compare / apply env profile + the **My Score** breakdown (formerly Dashboard's Environment Score) |
+| **Health** | 7 | Environment diagnostics and visual PATH-conflict explorer (sub-tabs: Issues, PATH) |
+| **Security** | 8 | Security audit and policy compliance (sub-tabs: Audit, Compliance) |
+| **Backup** | 9 | Export, import, share, custom packs, saved backups |
+| **Config** | 0 | View and edit settings |
 
 ### Marketplace
 
