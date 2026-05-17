@@ -49,6 +49,7 @@ export default defineConfig({
           label: 'Guides',
           items: [
             { label: 'TUI Overview', slug: 'guides/tui-overview' },
+            { label: 'Agents Tab', slug: 'guides/agents' },
             { label: 'Favorites', slug: 'guides/favorites' },
             { label: 'Batch Updates', slug: 'guides/batch-updates' },
             { label: 'Backup & Restore', slug: 'guides/backup-restore' },
@@ -97,6 +98,29 @@ export default defineConfig({
               ],
             },
             {
+              label: 'Visualisation',
+              items: [
+                { label: 'graph', slug: 'reference/commands/graph' },
+                { label: 'badge', slug: 'reference/commands/badge' },
+              ],
+            },
+            {
+              label: 'Agents',
+              items: [
+                { label: 'agents', slug: 'reference/commands/agents' },
+                { label: 'agents list', slug: 'reference/commands/agents-list' },
+                { label: 'agents search', slug: 'reference/commands/agents-search' },
+                { label: 'agents launch', slug: 'reference/commands/agents-launch' },
+                { label: 'agents marketplaces', slug: 'reference/commands/agents-marketplaces' },
+                { label: 'agents plugins', slug: 'reference/commands/agents-plugins' },
+                { label: 'agents skills', slug: 'reference/commands/agents-skills' },
+                { label: 'agents mcps', slug: 'reference/commands/agents-mcps' },
+                { label: 'agents sessions', slug: 'reference/commands/agents-sessions' },
+                { label: 'agents doctor', slug: 'reference/commands/agents-doctor' },
+                { label: 'agents refresh', slug: 'reference/commands/agents-refresh' },
+              ],
+            },
+            {
               label: 'History',
               items: [
                 { label: 'trail', slug: 'reference/commands/trail' },
@@ -140,6 +164,7 @@ export default defineConfig({
           label: 'Configuration',
           items: [
             { label: 'config.yaml Reference', slug: 'reference/configuration' },
+            { label: 'Output Formats', slug: 'reference/output-formats' },
           ],
         },
         {
