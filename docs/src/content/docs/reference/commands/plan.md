@@ -80,7 +80,7 @@ Estimated time:
 
 ## Related
 
-- [`klim apply`](./apply.md) — execute the plan with safety wrapper
-- [`klim checkpoint`](./checkpoint.md) — capture a named snapshot before applying
-- [`klim rollback`](./rollback.md) — produce a plan that restores a checkpoint
-- [`klim upgrade`](./upgrade.md) — bare-bones upgrade with no plan/checkpoint wrapper
+- [`klim apply`](../apply/) — execute the plan with safety wrapper
+- [`klim checkpoint`](../checkpoint/) — capture a named snapshot before applying
+- [`klim rollback`](../rollback/) — produce a plan that restores a checkpoint
+- [`klim upgrade`](../upgrade/) — bare-bones upgrade with no plan/checkpoint wrapper

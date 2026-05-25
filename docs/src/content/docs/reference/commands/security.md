@@ -8,7 +8,7 @@ safety of your toolchain. With no arguments it prints a summary across
 all subcommands; otherwise, dispatch to a specific check.
 
 Environment health (PATH conflicts, multi-installs, missing PMs,
-stale caches) lives under the top-level [`klim health`](./health.md)
+stale caches) lives under the top-level [`klim health`](../health/)
 command — it's a separate concern from supply-chain security.
 
 ## Synopsis
@@ -38,7 +38,7 @@ the installed versions of every tool that maps to a supported
 ecosystem. Coverage today is **npm only** — OSV.dev rejects the
 `Homebrew` and `GitHub` ecosystems with HTTP 400, so brew-only and
 GitHub-slug-only tools are listed under `skipped`. See the dedicated
-[`klim security vuln`](./vuln.md) reference for full
+[`klim security vuln`](../vuln/) reference for full
 flag documentation.
 
 Exit codes: `0` = clean or `--fail-on` not set, `1` = vuln lookup
@@ -61,12 +61,12 @@ CI to enforce the gate strictly.
 
 All `klim security` commands print human-readable progress to stderr
 and machine-readable payloads (`--output json`) to stdout. See
-[configuration reference](../configuration.md).
+[configuration reference](../../configuration/).
 
 ## Related
 
-- [`klim health`](./health.md) — environment health & PATH diagnostics
-- [`klim security vuln`](./vuln.md) — vulnerability scan reference
-- [`klim score`](./score.md) — composite security score per tool
-- [`klim trail`](./trail.md) — change history (every install/upgrade)
+- [`klim health`](../health/) — environment health & PATH diagnostics
+- [`klim security vuln`](../vuln/) — vulnerability scan reference
+- [`klim score`](../score/) — composite security score per tool
+- [`klim trail`](../trail/) — change history (every install/upgrade)
 

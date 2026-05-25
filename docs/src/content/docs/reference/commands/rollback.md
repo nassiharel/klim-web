@@ -69,6 +69,6 @@ on the roadmap.
 
 ## Related
 
-- [`klim checkpoint`](./checkpoint.md) — capture a snapshot first
-- [`klim plan`](./plan.md) — same plan output for forward changes
-- [`klim apply`](./apply.md) — captures a `pre-apply-<UTC>` checkpoint automatically before running
+- [`klim checkpoint`](../checkpoint/) — capture a snapshot first
+- [`klim plan`](../plan/) — same plan output for forward changes
+- [`klim apply`](../apply/) — captures a `pre-apply-<UTC>` checkpoint automatically before running

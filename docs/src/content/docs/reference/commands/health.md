@@ -21,7 +21,7 @@ klim health path             # PATH-conflict visualization (Active vs Shadowed)
 
 `klim health` is the top-level home for environment checks. Supply-chain
 checks (vulnerabilities, archived upstreams, compliance) live under
-[`klim security`](./security.md).
+[`klim security`](../security/).
 
 ## `klim health`
 
@@ -134,7 +134,7 @@ command: "$new = ..."          # the command that was about to run
 
 ## Related
 
-- [`klim security`](./security.md) — supply-chain checks (vuln, audit, compliance)
-- [`klim score`](./score.md) — composite per-tool security score
-- [`klim plan`](./plan.md) — preview pending changes with confidence scoring
-- [`klim apply`](./apply.md) — execute changes with auto-checkpoint and postcheck
+- [`klim security`](../security/) — supply-chain checks (vuln, audit, compliance)
+- [`klim score`](../score/) — composite per-tool security score
+- [`klim plan`](../plan/) — preview pending changes with confidence scoring
+- [`klim apply`](../apply/) — execute changes with auto-checkpoint and postcheck

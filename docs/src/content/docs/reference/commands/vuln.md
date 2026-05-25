@@ -120,5 +120,5 @@ vuln:
 
 ## Related
 
-- [`klim security`](./security.md) — umbrella reference
-- [`klim score`](./score.md) — composite per-tool score (folds in vuln data)
+- [`klim security`](../security/) — umbrella reference
+- [`klim score`](../score/) — composite per-tool score (folds in vuln data)

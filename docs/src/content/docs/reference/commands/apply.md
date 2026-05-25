@@ -69,7 +69,7 @@ Postcheck (3.2s):
 
 ## Related
 
-- [`klim plan`](./plan.md) — preview the changes
-- [`klim checkpoint`](./checkpoint.md) — manage named snapshots
-- [`klim rollback`](./rollback.md) — produce a plan that restores a checkpoint
-- [`klim upgrade`](./upgrade.md) — apply without checkpoint/postcheck
+- [`klim plan`](../plan/) — preview the changes
+- [`klim checkpoint`](../checkpoint/) — manage named snapshots
+- [`klim rollback`](../rollback/) — produce a plan that restores a checkpoint
+- [`klim upgrade`](../upgrade/) — apply without checkpoint/postcheck

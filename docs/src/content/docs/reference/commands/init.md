@@ -82,6 +82,6 @@ When a `.klim.yaml` already exists as a regular file (or as a symlink to an exis
 
 ## See Also
 
-- [klim check](./check.md) — Validate against .klim.yaml
-- [klim generate](./generate.md) — Generate CI/container configs from .klim.yaml
-- [Team Manifests guide](../../guides/team-manifests.mdx)
+- [klim check](../check/) — Validate against .klim.yaml
+- [klim generate](../generate/) — Generate CI/container configs from .klim.yaml
+- [Team Manifests guide](../../../guides/team-manifests/)

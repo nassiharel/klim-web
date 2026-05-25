@@ -54,5 +54,5 @@ In the TUI, switch to the **★ Favorites** tab and press `s` to share just your
 
 ## See Also
 
-- [`klim export`](./export.md) — Export to a YAML file (more detailed)
-- [`klim diff`](./diff.md) — Compare against a token or manifest
+- [`klim export`](../export/) — Export to a YAML file (more detailed)
+- [`klim diff`](../diff/) — Compare against a token or manifest

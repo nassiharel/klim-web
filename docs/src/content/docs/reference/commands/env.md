@@ -146,6 +146,6 @@ Cross-OS gaps surface as informational entries, never as errors.
 
 ## Related
 
-- [`klim share`](./share.md) — narrower token (tool names only) for chat
-- [`klim export`](./export.md) — full YAML manifest (tools + OS + arch)
-- [`klim import`](./import.md) — install from a manifest file
+- [`klim share`](../share/) — narrower token (tool names only) for chat
+- [`klim export`](../export/) — full YAML manifest (tools + OS + arch)
+- [`klim import`](../import/) — install from a manifest file

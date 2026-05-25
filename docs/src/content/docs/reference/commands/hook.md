@@ -46,6 +46,6 @@ When you `cd` into a project with missing tools:
 
 ## See Also
 
-- [klim completion](./completion.md) — Shell tab completions
-- [klim check](./check.md) — Manual project validation
-- [Shell Integration guide](../../guides/shell-integration.mdx)
+- [klim completion](../completion/) — Shell tab completions
+- [klim check](../check/) — Manual project validation
+- [Shell Integration guide](../../../guides/shell-integration/)

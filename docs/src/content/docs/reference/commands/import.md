@@ -42,5 +42,5 @@ klim import my-tools.yaml --yes
 
 ## See Also
 
-- [`klim export`](./export.md) — Export tools to a manifest
-- [`klim open`](./open.md) — Install from a share token
+- [`klim export`](../export/) — Export tools to a manifest
+- [`klim open`](../open/) — Install from a share token

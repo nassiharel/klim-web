@@ -72,6 +72,6 @@ packs:
 
 ## See Also
 
-- [Marketplace guide](../../guides/adding-tools.mdx)
-- [Adding Tools guide](../../guides/adding-tools.mdx)
-- [config.yaml Reference](../configuration.md)
+- [Marketplace guide](../../../guides/adding-tools/)
+- [Adding Tools guide](../../../guides/adding-tools/)
+- [config.yaml Reference](../../configuration/)

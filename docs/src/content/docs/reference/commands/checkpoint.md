@@ -72,6 +72,6 @@ kubectl       1.31.0       brew
 
 ## Related
 
-- [`klim rollback`](./rollback.md) — produce a plan that restores a checkpoint
-- [`klim apply`](./apply.md) — captures `pre-apply-<UTC>` automatically
-- [`klim trail`](./trail.md) — content-addressed history (different mental model: trail is an append-only log; checkpoint is a named save state)
+- [`klim rollback`](../rollback/) — produce a plan that restores a checkpoint
+- [`klim apply`](../apply/) — captures `pre-apply-<UTC>` automatically
+- [`klim trail`](../trail/) — content-addressed history (different mental model: trail is an append-only log; checkpoint is a named save state)

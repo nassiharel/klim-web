@@ -137,6 +137,6 @@ curl -s http://127.0.0.1:7777/api/dashboard | jq .updates_available
 
 ## See Also
 
-- [`klim list`](./list.md) — Same data on the terminal.
-- [`klim info`](./info.md) — Single-tool detail in the terminal.
-- [`klim trail`](./trail.md) — Toolchain history.
+- [`klim list`](../list/) — Same data on the terminal.
+- [`klim info`](../info/) — Single-tool detail in the terminal.
+- [`klim trail`](../trail/) — Toolchain history.
