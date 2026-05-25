@@ -90,4 +90,4 @@ The tool detail view (press Enter on any tool) includes a **"Referenced By"** se
 ## See Also
 
 - [klim check](./check.md) — Validate project requirements
-- [Team Manifests guide](../../guides/team-manifests.mdx)
+- [Team Manifests guide](/guides/team-manifests)

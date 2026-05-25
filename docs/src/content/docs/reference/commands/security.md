@@ -61,7 +61,7 @@ CI to enforce the gate strictly.
 
 All `klim security` commands print human-readable progress to stderr
 and machine-readable payloads (`--output json`) to stdout. See
-[configuration reference](../configuration.md).
+[configuration reference](/reference/configuration).
 
 ## Related
 

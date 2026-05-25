@@ -64,4 +64,4 @@ node      24.14.1 (winget)       —                ← local only
 ## See Also
 
 - [Backup & Restore](./backup-restore.mdx) — Export and import tool manifests
-- [klim diff reference](../reference/commands/diff.md)
+- [klim diff reference](/reference/commands/diff)
