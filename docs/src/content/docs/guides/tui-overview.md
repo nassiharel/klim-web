@@ -77,10 +77,10 @@ Press `P` from any tab to open the Plan modal — the same preview `klim plan` e
 
 The full CLI surface (`klim plan`, `klim apply`, `klim checkpoint`, `klim rollback`) still works identically and remains the reference for CI / agent integration. See the reference pages:
 
-- [`klim plan`](/reference/commands/plan) — preview pending changes with 0-100% upgrade confidence per change
-- [`klim apply`](/reference/commands/apply) — execute, auto-checkpointed, post-validated
-- [`klim checkpoint`](/reference/commands/checkpoint) — capture / list / show / delete named snapshots
-- [`klim rollback`](/reference/commands/rollback) — produce a restore plan from a checkpoint
+- [`klim plan`](../reference/commands/plan.md) — preview pending changes with 0-100% upgrade confidence per change
+- [`klim apply`](../reference/commands/apply.md) — execute, auto-checkpointed, post-validated
+- [`klim checkpoint`](../reference/commands/checkpoint.md) — capture / list / show / delete named snapshots
+- [`klim rollback`](../reference/commands/rollback.md) — produce a restore plan from a checkpoint
 
 ## Tool List Navigation
 

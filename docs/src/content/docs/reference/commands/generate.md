@@ -64,4 +64,4 @@ Tools without a known feature are installed via `postCreateCommand`.
 
 - [klim init](./init.md) — Generate .klim.yaml from project files
 - [klim check](./check.md) — Validate tool requirements
-- [Team Manifests guide](/guides/team-manifests)
+- [Team Manifests guide](../../guides/team-manifests.mdx)
