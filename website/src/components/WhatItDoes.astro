@@ -1,0 +1,196 @@
+---
+/*
+ * "What it does" — six hand-picked capability vignettes. Each shows klim
+ * *doing the thing* (real YAML, real CLI output, real diff) instead of
+ * describing it with an icon and a sentence. Replaces the 21-tile
+ * capability grid in the old design.
+ *
+ * Layout note: alternating 5/7 split keeps the page from feeling like a
+ * uniform card grid — every vignette gets to breathe differently.
+ */
+---
+
+<section id="what" class="border-t" style="border-color: var(--rule);">
+  <div class="mx-auto max-w-6xl px-6 py-20 md:py-28">
+
+    <header class="mb-14 max-w-3xl">
+      <p class="mono-label">§ 02 — What it does</p>
+      <h2 class="display mt-3 text-[2.4rem] sm:text-[3rem]" style="color: var(--fg);">
+        Six things you'll <span class="display-italic" style="color: var(--accent);">actually</span> use.
+      </h2>
+    </header>
+
+    <div class="space-y-20">
+
+      <!-- 01 · .klim.yaml — the contract -->
+      <article class="grid gap-8 md:grid-cols-12 md:gap-12">
+        <div class="md:col-span-5">
+          <p class="mono-label">01 / contract</p>
+          <h3 class="display mt-3 text-[1.7rem]" style="color: var(--fg);">A file your repo can own.</h3>
+          <p class="mt-3 leading-[1.65]" style="color: var(--fg-muted);">
+            <code class="font-mono text-[0.92em]" style="color: var(--fg);">.klim.yaml</code> lives next to your code.
+            Required tools, version ranges, a pack or two. <code class="font-mono text-[0.92em]" style="color: var(--fg);">klim init</code>
+            scaffolds it from what your repo already references.
+          </p>
+        </div>
+        <div class="md:col-span-7">
+          <p class="filename mb-2">.klim.yaml</p>
+          <div class="cli overflow-hidden px-5 py-4 text-[0.82rem]">
+<pre class="m-0"><code><span class="c-mag">project</span>: <span class="c-fg">api-gateway</span>
+<span class="c-mag">requires</span>:
+  <span class="c-fg">go</span>:         <span class="c-amber">"~1.22"</span>     <span class="c-dim"># range</span>
+  <span class="c-fg">terraform</span>:  <span class="c-amber">"&gt;=1.6 &lt;2.0"</span>
+  <span class="c-fg">kubectl</span>:    <span class="c-amber">"^1.30"</span>
+  <span class="c-fg">sops</span>:       <span class="c-amber">"3.9.x"</span>
+<span class="c-mag">packs</span>:
+  - <span class="c-fg">platform/cloud-native</span>
+<span class="c-mag">policy</span>:
+  <span class="c-fg">allowed_licenses</span>: [MIT, Apache-2.0, BSD-3-Clause]
+  <span class="c-fg">max_severity</span>: high</code></pre>
+          </div>
+        </div>
+      </article>
+
+      <hr class="rule" style="border-color: var(--rule);"/>
+
+      <!-- 02 · diff -->
+      <article class="grid gap-8 md:grid-cols-12 md:gap-12">
+        <div class="order-2 md:order-1 md:col-span-7">
+          <p class="filename mb-2">$ klim diff teammate.yaml</p>
+          <div class="cli overflow-hidden px-5 py-4 text-[0.82rem]">
+<pre class="m-0"><code>  tool         you                they
+  <span class="c-fg">go</span>           <span class="c-green">1.22.4</span>             <span class="c-green">1.22.4</span>            <span class="c-green">match</span>
+  <span class="c-fg">terraform</span>    <span class="c-amber">1.6.6</span>              <span class="c-amber">1.8.2</span>             <span class="c-amber">differs</span>
+  <span class="c-fg">docker</span>       <span class="c-amber">25.0</span>     via brew  <span class="c-amber">26.1</span>    via colima  <span class="c-amber">source differs</span>
+  <span class="c-fg">terraform-docs</span>            <span class="c-mag">—</span>                <span class="c-mag">0.18.0</span>            <span class="c-mag">remote only</span>
+
+<span class="c-dim">exit 1</span>  <span class="c-dim">// CI-friendly: nonzero on drift</span></code></pre>
+          </div>
+        </div>
+        <div class="order-1 md:order-2 md:col-span-5">
+          <p class="mono-label">02 / diff</p>
+          <h3 class="display mt-3 text-[1.7rem]" style="color: var(--fg);">"Works on my machine," answered.</h3>
+          <p class="mt-3 leading-[1.65]" style="color: var(--fg-muted);">
+            Diff your toolchain against a teammate's export, a share token, or the
+            contract checked into the repo. Exits nonzero on drift, which is what
+            CI wants to hear.
+          </p>
+        </div>
+      </article>
+
+      <hr class="rule" style="border-color: var(--rule);"/>
+
+      <!-- 03 · plan / apply / rollback -->
+      <article class="grid gap-8 md:grid-cols-12 md:gap-12">
+        <div class="md:col-span-5">
+          <p class="mono-label">03 / plan · apply · rollback</p>
+          <h3 class="display mt-3 text-[1.7rem]" style="color: var(--fg);">Terraform-style, for your tools.</h3>
+          <p class="mt-3 leading-[1.65]" style="color: var(--fg-muted);">
+            Every change is previewed with a confidence score, applied through a
+            native package manager, and bracketed by an auto-captured checkpoint
+            you can roll back to with a single command.
+          </p>
+        </div>
+        <div class="md:col-span-7">
+          <p class="filename mb-2">$ klim apply  —  postcheck + auto checkpoint</p>
+          <div class="cli overflow-hidden px-5 py-4 text-[0.82rem]">
+<pre class="m-0"><code><span class="c-dim">capturing checkpoint</span> <span class="c-blue">pre-apply-2026-06-15T11:42Z</span>  ✓
+<span class="c-green">+</span> sops 3.9.1            <span class="c-dim">brew install sops</span>          ✓
+<span class="c-amber">~</span> terraform 1.8.2       <span class="c-dim">brew upgrade terraform</span>     ✓
+<span class="c-amber">~</span> kubectl 1.30.1        <span class="c-dim">brew upgrade kubectl</span>       ✓
+
+postcheck:
+  <span class="c-green">✓</span> shell resolution   <span class="c-green">✓</span> binary validation
+  <span class="c-green">✓</span> PATH consistency   <span class="c-green">✓</span> manager integrity
+
+<span class="c-dim">to undo:</span> <span class="c-fg">klim rollback pre-apply-2026-06-15T11:42Z</span></code></pre>
+          </div>
+        </div>
+      </article>
+
+      <hr class="rule" style="border-color: var(--rule);"/>
+
+      <!-- 04 · score / badge -->
+      <article class="grid gap-8 md:grid-cols-12 md:gap-12">
+        <div class="order-2 md:order-1 md:col-span-7">
+          <p class="filename mb-2">$ klim score --badge</p>
+          <div class="cli overflow-hidden px-5 py-4 text-[0.82rem]">
+<pre class="m-0"><code>environment score      <span class="c-green">94 / 100</span>   <span class="c-dim">grade A</span>
+
+  freshness        <span class="c-green">98</span>     last update 2d ago
+  security         <span class="c-amber">86</span>     3 advisories (low / med)
+  PATH hygiene     <span class="c-green">100</span>    no shadowed binaries
+  contract match   <span class="c-green">92</span>     1 tool out of range
+
+shields.io badge written to <span class="c-fg">README.md</span>  ✓</code></pre>
+          </div>
+        </div>
+        <div class="order-1 md:order-2 md:col-span-5">
+          <p class="mono-label">04 / score</p>
+          <h3 class="display mt-3 text-[1.7rem]" style="color: var(--fg);">A number you can put on the readme.</h3>
+          <p class="mt-3 leading-[1.65]" style="color: var(--fg-muted);">
+            A 0–100 health grade with a per-category breakdown — freshness,
+            security, PATH hygiene, contract match. Embeds as a shields.io
+            badge so the README has skin in the game.
+          </p>
+        </div>
+      </article>
+
+      <hr class="rule" style="border-color: var(--rule);"/>
+
+      <!-- 05 · share token -->
+      <article class="grid gap-8 md:grid-cols-12 md:gap-12">
+        <div class="md:col-span-5">
+          <p class="mono-label">05 / share</p>
+          <h3 class="display mt-3 text-[1.7rem]" style="color: var(--fg);">Send your toolchain in a chat message.</h3>
+          <p class="mt-3 leading-[1.65]" style="color: var(--fg-muted);">
+            Compact <code class="font-mono text-[0.92em]" style="color: var(--fg);">klim:v1:…</code> tokens encode the
+            essentials. The recipient runs <code class="font-mono text-[0.92em]" style="color: var(--fg);">klim open</code>
+            and lands on the same setup.
+          </p>
+        </div>
+        <div class="md:col-span-7">
+          <p class="filename mb-2">$ klim share  →  paste  →  klim open</p>
+          <div class="cli overflow-hidden px-5 py-4 text-[0.82rem]">
+<pre class="m-0"><code><span class="c-prompt">you  $</span> <span class="c-fg">klim share</span>
+<span class="c-blue">klim:v1:eyJ0b29scyI6WyJnbyIsInRlcmYiLCJrdWJlIl0sInBhY2tzIjpb</span><span class="c-dim">…</span>
+
+<span class="c-prompt">them $</span> <span class="c-fg">klim open klim:v1:eyJ0b29scyI6...</span>
+<span class="c-dim">reading 8 tools, 1 pack…</span>
+<span class="c-dim">install plan ready — run</span> <span class="c-fg">klim apply</span> <span class="c-dim">to continue</span></code></pre>
+          </div>
+        </div>
+      </article>
+
+      <hr class="rule" style="border-color: var(--rule);"/>
+
+      <!-- 06 · agents -->
+      <article class="grid gap-8 md:grid-cols-12 md:gap-12">
+        <div class="order-2 md:order-1 md:col-span-7">
+          <p class="filename mb-2">agent · stable JSON · deterministic exit codes</p>
+          <div class="cli overflow-hidden px-5 py-4 text-[0.82rem]">
+<pre class="m-0"><code><span class="c-prompt">$</span> <span class="c-fg">klim check --output json</span>
+{'{'}
+  <span class="c-blue">"project"</span>:  <span class="c-amber">".klim.yaml"</span>,
+  <span class="c-blue">"status"</span>:   <span class="c-amber">"needs_action"</span>,
+  <span class="c-blue">"missing"</span>:  [<span class="c-amber">"terraform"</span>],
+  <span class="c-blue">"outdated"</span>: [<span class="c-amber">"kubectl"</span>],
+  <span class="c-blue">"score"</span>:    94
+{'}'}
+<span class="c-dim">exit 2</span>  <span class="c-dim">// 0=ok 1=drift 2=needs_action</span></code></pre>
+          </div>
+        </div>
+        <div class="order-1 md:order-2 md:col-span-5">
+          <p class="mono-label">06 / agents</p>
+          <h3 class="display mt-3 text-[1.7rem]" style="color: var(--fg);">An interface agents won't improvise around.</h3>
+          <p class="mt-3 leading-[1.65]" style="color: var(--fg-muted);">
+            Same flags, same JSON, same exit codes — whether the caller is you,
+            CI, or an LLM. Agents stop guessing brew commands and start calling
+            a contract.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>

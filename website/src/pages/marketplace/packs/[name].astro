@@ -18,10 +18,10 @@ const toolMap = new Map(marketplace.tools.map((t: any) => [t.name, t]));
 const resolvedTools = pack.tools.map((name: string) => toolMap.get(name)).filter(Boolean);
 ---
 
-<Layout title={`${pack.display_name} - klim Marketplace`}>
+<Layout title={`${pack.display_name} — klim Marketplace`} description={pack.description}>
   <Header />
-  <main class="pt-28 pb-20">
-    <div class="mx-auto max-w-4xl px-6">
+  <main class="pb-20">
+    <div class="mx-auto max-w-4xl px-6 pt-16">
       <PackDetail pack={pack} resolvedTools={resolvedTools} />
     </div>
   </main>

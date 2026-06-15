@@ -1,15 +1,357 @@
 @import "tailwindcss";
 
-:root {
-  color-scheme: dark;
-  --klim-accent: #22c55e;
-  --klim-accent-strong: #10b981;
-  --klim-accent-alt: #14b8a6;
-  --klim-surface: #020617;
+/* ---------------------------------------------------------------------------
+   klim — editorial craft software with controlled atmosphere
+   Paper-light default, ink dark mode, deep-forest CLI accent + warm sun glow.
+   Type:
+     • Instrument Serif  (display, signature italic)
+     • Geist             (body sans)
+     • JetBrains Mono    (wordmark · CLI · labels)
+   --------------------------------------------------------------------------- */
+
+@theme {
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans:    "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Paper palette (warm, slightly toasted) */
+  --color-paper:   #f5f0e3;
+  --color-paper-2: #ece4d0;
+  --color-paper-3: #e0d6bd;
+  --color-ink:     #0b1220;   /* matches brand charcoal */
+  --color-ink-2:   #1a2230;
+  --color-muted:   #6b6256;
+  --color-rule:    #c9bfa7;
+
+  /* Brand: cyan chevron from klim mark, plus a warm amber for highlights. */
+  --color-accent:   #00c8e6;   /* klim brand cyan */
+  --color-accent-2: #0aa7c2;   /* deeper cyan for hover/strong */
+  --color-sun:      #f59e0b;   /* warm amber for halos / highlights */
+  --color-marker:   #f3d171;   /* highlighter yellow */
+
+  /* CLI chrome */
+  --color-cli-bg:   #0c1117;
+  --color-cli-bg-2: #131a22;
+  --color-cli-fg:   #e6edf3;
+  --color-cli-dim:  #7d8590;
+  --color-cli-green:#7ee787;
+  --color-cli-amber:#f0b76b;
+  --color-cli-blue: #79c0ff;
+  --color-cli-mag:  #d2a8ff;
 }
 
-.brand-mark svg {
+/* Light is the editorial default. Dark mode wins on persisted choice. */
+:root {
+  color-scheme: light dark;
+  --bg:        var(--color-paper);
+  --bg-2:      var(--color-paper-2);
+  --bg-3:      var(--color-paper-3);
+  --fg:        var(--color-ink);
+  --fg-muted:  var(--color-muted);
+  --rule:      var(--color-rule);
+  --accent:    var(--color-accent);
+  --accent-2:  var(--color-accent-2);
+  --sun:       var(--color-sun);
+  --marker:    var(--color-marker);
+
+  /* Glow tokens — driven by accent + sun, alpha-tuned per surface. */
+  --glow-accent-soft:  color-mix(in oklab, var(--accent) 28%, transparent);
+  --glow-accent-hard:  color-mix(in oklab, var(--accent) 55%, transparent);
+  --glow-sun-soft:     color-mix(in oklab, var(--sun) 35%, transparent);
+  --glow-sun-hard:     color-mix(in oklab, var(--sun) 60%, transparent);
+  --glow-cli-edge:     color-mix(in oklab, var(--accent) 22%, transparent);
+}
+
+html[data-theme="dark"] {
+  --bg:       #0b1220;          /* brand charcoal */
+  --bg-2:     #111a2b;
+  --bg-3:     #18233a;
+  --fg:       #e6edf3;          /* matches brand light ink */
+  --fg-muted: #a3acb8;
+  --rule:     #243044;
+  --accent:   #00d4f0;           /* slightly brighter cyan on dark */
+  --accent-2: #00c8e6;
+  --sun:      #fbbf24;
+  --marker:   #f0b76b;
+
+  --glow-accent-soft:  color-mix(in oklab, var(--accent) 24%, transparent);
+  --glow-accent-hard:  color-mix(in oklab, var(--accent) 50%, transparent);
+  --glow-sun-soft:     color-mix(in oklab, var(--sun) 22%, transparent);
+  --glow-sun-hard:     color-mix(in oklab, var(--sun) 48%, transparent);
+  --glow-cli-edge:     color-mix(in oklab, var(--accent) 35%, transparent);
+  color-scheme: dark;
+}
+
+html, body {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: "kern", "liga", "ss01", "cv11";
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 16.5px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.005em;
+}
+
+/* Paper grain — light only. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(10, 14, 20, 0.04) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: multiply;
+  z-index: 0;
+  opacity: 0.55;
+}
+html[data-theme="dark"] body::before {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  mix-blend-mode: screen;
+}
+
+/* Display utility — Instrument Serif. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+}
+.display-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.018em;
+}
+
+/* Highlighter-style accent for key words */
+.marker {
+  background:
+    linear-gradient(
+      180deg,
+      transparent 55%,
+      color-mix(in oklab, var(--sun) 55%, transparent) 55%,
+      color-mix(in oklab, var(--sun) 55%, transparent) 92%,
+      transparent 92%
+    );
+  padding: 0 0.08em;
+}
+
+/* Mono labels (filename strips, section numbers) */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* Hairline rule */
+.rule { border-color: var(--rule); }
+
+/* Editorial pull-quote */
+.pullquote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.7rem, 3.2vw, 2.8rem);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+}
+
+/* Code block (paper-framed terminal) — gets a soft outer glow on hover. */
+.cli {
+  background: var(--color-cli-bg);
+  color: var(--color-cli-fg);
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  line-height: 1.65;
+  border-radius: 6px;
+  position: relative;
+  isolation: isolate;
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, #000 28%, transparent),
+    0 24px 60px -28px rgba(10, 14, 20, 0.45),
+    0 0 0 0 var(--glow-cli-edge);
+  transition: box-shadow 350ms cubic-bezier(.2,.7,.2,1), transform 350ms cubic-bezier(.2,.7,.2,1);
+}
+.cli::before {
+  /* faint accent glow that lives behind the block */
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    color-mix(in oklab, var(--accent) 30%, transparent) 55%,
+    transparent 80%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: -1;
+}
+.cli:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, #000 28%, transparent),
+    0 30px 70px -28px rgba(10, 14, 20, 0.55),
+    0 0 80px -12px var(--glow-cli-edge);
+}
+.cli .cli-chrome {
+  background: var(--color-cli-bg-2);
+  color: var(--color-cli-dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid color-mix(in oklab, #fff 4%, transparent);
+}
+.cli .c-prompt { color: var(--color-cli-green); text-shadow: 0 0 12px color-mix(in oklab, var(--color-cli-green) 60%, transparent); }
+.cli .c-dim    { color: var(--color-cli-dim); }
+.cli .c-fg     { color: var(--color-cli-fg); }
+.cli .c-green  { color: var(--color-cli-green); }
+.cli .c-amber  { color: var(--color-cli-amber); }
+.cli .c-blue   { color: var(--color-cli-blue); }
+.cli .c-mag    { color: var(--color-cli-mag); }
+.cli .c-flag   { color: #ffa657; }
+
+/* Brand mark sizing */
+.brand-mark svg { display: block; height: 100%; width: 100%; }
+
+/* Filename strip atop a code/figure block */
+.filename {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--fg-muted);
+  letter-spacing: 0.04em;
+}
+
+/* ----------------------------------------------------------------------- */
+/* Atmospheric glows                                                       */
+/* ----------------------------------------------------------------------- */
+
+/* Sun halo — radial wash behind hero. */
+.halo-sun {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 0%,
+      var(--glow-sun-soft) 0%,
+      transparent 60%);
+}
+
+/* Accent orb — soft blurred circle the page can place freely. */
+.orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: -1;
+}
+.orb--accent { background: var(--glow-accent-soft); }
+.orb--sun    { background: var(--glow-sun-soft); }
+
+/* Section ornament: glowing star/asterism between sections. */
+.ornament {
+  display: inline-block;
+  color: var(--accent);
+  text-shadow:
+    0 0 8px var(--glow-accent-hard),
+    0 0 18px var(--glow-accent-soft);
+  animation: klim-pulse 5.5s ease-in-out infinite;
+}
+@keyframes klim-pulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.06); }
+}
+
+/* Primary CTA glow — sun-warm halo on hover. */
+.btn-glow {
+  position: relative;
+  isolation: isolate;
+  transition: transform 250ms ease, box-shadow 350ms ease;
+  box-shadow:
+    0 1px 0 rgba(0,0,0,0.04),
+    0 0 0 0 var(--glow-sun-soft);
+}
+.btn-glow:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 rgba(0,0,0,0.04),
+    0 0 60px -8px var(--glow-sun-hard);
+}
+
+/* Secondary CTA: subtle accent halo on hover. */
+.btn-ghost {
+  transition: color 200ms ease, border-color 200ms ease, box-shadow 350ms ease;
+}
+.btn-ghost:hover {
+  box-shadow: 0 0 40px -10px var(--glow-accent-hard);
+}
+
+/* Section index numeral glow — drop-cap style */
+.numeral {
+  color: var(--accent);
+  text-shadow:
+    0 0 26px var(--glow-accent-soft),
+    0 0 56px var(--glow-accent-soft);
+}
+
+/* Reveal-on-load: lightweight staggered fade-in for the hero. */
+@keyframes klim-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rise   { animation: klim-rise 750ms cubic-bezier(.2,.7,.2,1) both; }
+.rise-1 { animation-delay:  60ms; }
+.rise-2 { animation-delay: 180ms; }
+.rise-3 { animation-delay: 300ms; }
+.rise-4 { animation-delay: 460ms; }
+.rise-5 { animation-delay: 620ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise, .rise-1, .rise-2, .rise-3, .rise-4, .rise-5,
+  .ornament { animation: none; }
+}
+
+/* Selection: highlighter */
+::selection {
+  background: var(--marker);
+  color: var(--color-ink);
+}
+
+/* Tabbed install group — pure-CSS via radio + checked */
+.tab-input { position: absolute; opacity: 0; pointer-events: none; }
+.tab-panel { display: none; }
+#tab-mac:checked   ~ .tab-bar [for="tab-mac"],
+#tab-linux:checked ~ .tab-bar [for="tab-linux"],
+#tab-win:checked   ~ .tab-bar [for="tab-win"] {
+  background: var(--fg);
+  color: var(--bg);
+  box-shadow: 0 0 30px -6px var(--glow-accent-soft);
+}
+#tab-mac:checked   ~ .tab-panels .tab-panel[data-tab="mac"],
+#tab-linux:checked ~ .tab-panels .tab-panel[data-tab="linux"],
+#tab-win:checked   ~ .tab-panels .tab-panel[data-tab="win"] {
   display: block;
-  height: 100%;
-  width: 100%;
+}
+
+/* Card hover: lift + accent glow */
+.card {
+  transition: transform 250ms ease, border-color 250ms ease, box-shadow 350ms ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--accent) 55%, var(--rule));
+  box-shadow:
+    0 18px 40px -28px rgba(10,14,20,0.35),
+    0 0 60px -12px var(--glow-accent-soft);
 }

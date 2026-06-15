@@ -5,7 +5,7 @@ interface Props {
 }
 const {
   title,
-  description = 'Deterministic developer toolchains across local machines, teams, CI, and agents.',
+  description = 'Klim is a productivity booster for dev tools. Map your environment, codify it as a contract, automate it through native package managers.',
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
@@ -18,9 +18,42 @@ const base = import.meta.env.BASE_URL;
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+
+    <!--
+      Three variable fonts:
+      • Instrument Serif — distinctive contemporary display serif with a
+        signature italic (this is the headline voice).
+      • Geist — clean modern body sans, pairs cleanly with the serif.
+      • JetBrains Mono — wordmark, CLI, labels.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300..700&family=JetBrains+Mono:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
     <title>{title}</title>
+
+    <!--
+      Theme is decided before paint to avoid a flash. Default = paper (light).
+      Persisted choice wins; otherwise we honor the OS only if it explicitly
+      prefers dark — the editorial default is paper.
+    -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('klim-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
   </head>
-  <body class="bg-slate-950 text-slate-100 antialiased">
+  <body class="antialiased">
     <slot />
   </body>
 </html>
