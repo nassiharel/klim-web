@@ -72,7 +72,7 @@ Completions ship in the release archives and Linux packages, or you can generate
 klim shell completion bash   # or zsh | fish | powershell
 ```
 
-See [shell completion](/docs/reference/commands/completion/) for where to install the output for
+See [shell completion](/reference/commands/completion/) for where to install the output for
 your shell.
 
 ### An upgrade broke something — how do I roll back?
@@ -84,8 +84,8 @@ klim checkpoint list
 klim rollback <checkpoint>
 ```
 
-See [plan](/docs/reference/commands/plan/), [apply](/docs/reference/commands/apply/), and
-[rollback](/docs/reference/commands/rollback/).
+See [plan](/reference/commands/plan/), [apply](/reference/commands/apply/), and
+[rollback](/reference/commands/rollback/).
 
 ### A PATH fix changed my environment and I want it back
 
