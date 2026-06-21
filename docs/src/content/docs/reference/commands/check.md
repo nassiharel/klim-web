@@ -1,5 +1,5 @@
 ---
-title: "klim check"
+title: "klim project check"
 description: Validate installed tools against .klim.yaml requirements
 ---
 
@@ -8,7 +8,7 @@ Check that all tools required by the project's `.klim.yaml` are installed and me
 ## Usage
 
 ```bash
-klim check [flags]
+klim project check [flags]
 ```
 
 ## Flags
@@ -30,13 +30,13 @@ klim check [flags]
 
 ```bash
 # Auto-find .klim.yaml in current/parent directories
-klim check
+klim project check
 
 # Specify explicit path
-klim check --file path/to/.klim.yaml
+klim project check --file path/to/.klim.yaml
 
 # Machine-readable output for CI
-klim check --json
+klim project check --json
 ```
 
 ## Output
@@ -57,7 +57,7 @@ klim check --json
 - name: Verify developer tools
   run: |
     curl -fsSL https://raw.githubusercontent.com/nassiharel/klim/main/install.sh | bash
-    klim check --json
+    klim project check --json
 ```
 
 ## See Also

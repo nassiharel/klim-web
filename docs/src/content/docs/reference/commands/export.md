@@ -1,5 +1,5 @@
 ---
-title: "klim export"
+title: "klim share export"
 description: Export tools to stdout, snapshots, or named profiles
 ---
 
@@ -8,12 +8,12 @@ Export detected tools to YAML. Without a subcommand, prints to stdout. Includes 
 ## Usage
 
 ```bash
-klim export [flags]           # print manifest to stdout
-klim export save [label]      # save as timestamped snapshot
-klim export list              # list saved snapshots
-klim export show <name>       # show a snapshot
-klim export delete <name>     # delete a snapshot
-klim export profile <command> # manage named profiles
+klim share export [flags]           # print manifest to stdout
+klim share export save [label]      # save as timestamped snapshot
+klim share export list              # list saved snapshots
+klim share export show <name>       # show a snapshot
+klim share export delete <name>     # delete a snapshot
+klim share export profile <command> # manage named profiles
 ```
 
 ## Flags
@@ -28,19 +28,19 @@ klim export profile <command> # manage named profiles
 
 | Command | Description |
 |---------|-------------|
-| `klim export save [label]` | Save current tool state as a timestamped snapshot |
-| `klim export list` | List saved snapshots |
-| `klim export show <name>` | Show tools in a snapshot |
-| `klim export delete <name>` | Delete a snapshot |
+| `klim share export save [label]` | Save current tool state as a timestamped snapshot |
+| `klim share export list` | List saved snapshots |
+| `klim share export show <name>` | Show tools in a snapshot |
+| `klim share export delete <name>` | Delete a snapshot |
 
 ### Profiles (Named Snapshots)
 
 | Command | Description |
 |---------|-------------|
-| `klim export profile save <name>` | Save current state as a named profile |
-| `klim export profile list` | List saved profiles |
-| `klim export profile show <name>` | Show a profile's tools |
-| `klim export profile delete <name>` | Delete a profile |
+| `klim share export profile save <name>` | Save current state as a named profile |
+| `klim share export profile list` | List saved profiles |
+| `klim share export profile show <name>` | Show a profile's tools |
+| `klim share export profile delete <name>` | Delete a profile |
 
 ## Snapshots vs Profiles
 
@@ -51,31 +51,31 @@ klim export profile <command> # manage named profiles
 
 ```bash
 # Export to stdout
-klim export
+klim share export
 
 # Save to file
-klim export > my-tools.yaml
+klim share export > my-tools.yaml
 
 # Force fresh scan before export
-klim export --refresh > my-tools.yaml
+klim share export --refresh > my-tools.yaml
 
 # Save before a big upgrade
-klim export save "before-k8s-upgrade"
+klim share export save "before-k8s-upgrade"
 
 # List all snapshots
-klim export list
+klim share export list
 
 # View what was in a snapshot
-klim export show before-k8s-upgrade
+klim share export show before-k8s-upgrade
 
 # Save a named profile
-klim export profile save work
+klim share export profile save work
 
 # List profiles
-klim export profile list
+klim share export profile list
 
 # Import on another machine
-klim import my-tools.yaml
+klim share import my-tools.yaml
 ```
 
 ## Output Format
@@ -109,19 +109,19 @@ The manifest is **cross-platform** — it contains package IDs for all supported
 - Snapshots: `~/.klim/snapshots/<timestamp>-<label>.yaml`
 - Profiles: `~/.klim/profiles/<name>.yaml`
 
-Both use the same YAML manifest format, so snapshots can also be used with `klim diff` and `klim import`.
+Both use the same YAML manifest format, so snapshots can also be used with `klim plan diff` and `klim share import`.
 
 ## Name Matching
 
 The `show` and `delete` commands support fuzzy matching — you can use a label, prefix, suffix, or substring:
 
 ```bash
-klim export show before-k8s    # matches "2026-04-30T...-before-k8s-upgrade"
-klim export show upgrade       # also matches
+klim share export show before-k8s    # matches "2026-04-30T...-before-k8s-upgrade"
+klim share export show upgrade       # also matches
 ```
 
 ## See Also
 
-- [`klim import`](../import/) — Install tools from a manifest
-- [`klim share`](../share/) — Generate a compact share token
-- [`klim diff`](../diff/) — Compare against a snapshot or manifest
+- [`klim share import`](../import/) — Install tools from a manifest
+- [`klim share link`](../share/) — Generate a compact share token
+- [`klim plan diff`](../diff/) — Compare against a snapshot or manifest

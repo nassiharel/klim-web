@@ -41,17 +41,17 @@ and klim parses those directly:
 |----------|--------|
 | **Claude Code** | `~/.config/claude-code/` (Linux / macOS), `%APPDATA%\Claude\` (Windows). |
 | **GitHub Copilot CLI** | `~/.config/github-copilot/` and `~/.copilot/`. |
-| **MCP registry** | A bundled catalog refreshable via `klim agents refresh`. |
+| **MCP registry** | A bundled catalog refreshable via `klim agent refresh`. |
 
 The scan is cached at `~/.klim/cache/agents-cache.yaml` so the tab
 loads instantly on subsequent runs. Hit `r` (or run
-`klim agents refresh` from the CLI) to force a rescan.
+`klim agent refresh` from the CLI) to force a rescan.
 
 ## Provider health
 
 If a provider isn't detected — binary missing from `PATH`, config
 directory absent, or manifest files unreadable — the sub-tab shows
-the issue inline and points at `klim agents doctor` for full
+the issue inline and points at `klim agent doctor` for full
 diagnostics.
 
 ## Launching a session
@@ -64,18 +64,18 @@ if you'd typed the provider command by hand.
 
 The corresponding CLI commands cover the same surface:
 
-- [`klim agents`](/reference/commands/agents/) — overview + global flags
-- [`klim agents list`](/reference/commands/agents-list/)
-- [`klim agents search`](/reference/commands/agents-search/)
-- [`klim agents launch`](/reference/commands/agents-launch/)
-- [`klim agents doctor`](/reference/commands/agents-doctor/)
+- [`klim agent`](/reference/commands/agents/) — overview + global flags
+- [`klim agent list`](/reference/commands/agents-list/)
+- [`klim agent search`](/reference/commands/agents-search/)
+- [`klim agent launch`](/reference/commands/agents-launch/)
+- [`klim agent doctor`](/reference/commands/agents-doctor/)
 
 ## Cross-provider promote
 
 When the same entity (e.g. a plugin) is available on multiple
 providers, the detail page exposes a **Promote** action — pick the
 provider you want to mirror it to. Promote is also available from
-`klim agents` via the future cross-provider helpers; see the agents
+`klim agent` via the future cross-provider helpers; see the agents
 overview for the matrix of supported promotions.
 
 ## Costs view

@@ -1,9 +1,9 @@
 ---
-title: "klim graph"
+title: "klim tool graph"
 description: Render a force-directed graph of your installed tools.
 ---
 
-`klim graph` draws every tool klim has detected on `PATH` as a node in
+`klim tool graph` draws every tool klim has detected on `PATH` as a node in
 a force-directed graph. Edges connect tools that share a property —
 category, tag, or package manager — so you can see clusters in your
 toolchain at a glance.
@@ -11,7 +11,7 @@ toolchain at a glance.
 ## Usage
 
 ```bash
-klim graph [flags]
+klim tool graph [flags]
 ```
 
 By default the command prints a static terminal snapshot to stdout,
@@ -40,19 +40,19 @@ animated, fullscreen viewer.
 
 ```bash
 # Static snapshot, default --by category
-klim graph
+klim tool graph
 
 # Animated fullscreen
-klim graph --tui
+klim tool graph --tui
 
 # Group by tag instead
-klim graph --by tag
+klim tool graph --by tag
 
 # Group by package manager
-klim graph --by pm
+klim tool graph --by pm
 
 # Fixed-size snapshot for a README
-klim graph --width 80 --height 24 > toolchain.txt
+klim tool graph --width 80 --height 24 > toolchain.txt
 ```
 
 ## Output
@@ -92,5 +92,5 @@ into a Markdown code fence.
 
 ## See also
 
-- [`klim list`](/reference/commands/list/) — text-form view of your toolchain.
+- [`klim tool list`](/reference/commands/list/) — text-form view of your toolchain.
 - [`klim dashboard`](/guides/dashboard/) — TUI breakdown by category / PM / tag.

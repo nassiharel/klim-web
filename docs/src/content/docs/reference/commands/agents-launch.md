@@ -1,9 +1,9 @@
 ---
-title: "klim agents launch"
+title: "klim agent launch"
 description: Launch an agent session with a chosen skill, plugin, or saved session.
 ---
 
-`klim agents launch` opens an interactive agent session via the
+`klim agent launch` opens an interactive agent session via the
 provider's own CLI, but you don't have to remember each provider's
 flag syntax. Pick the entity (skill / plugin / saved session), and
 klim builds the right command line and either runs it or prints it
@@ -12,7 +12,7 @@ for review.
 ## Usage
 
 ```bash
-klim agents launch [flags]
+klim agent launch [flags]
 ```
 
 ## Flags
@@ -22,7 +22,7 @@ klim agents launch [flags]
 | `--provider` | Required when ambiguous: `claude-code`, `copilot-cli`. |
 | `--skill <name>` | Launch with a specific skill loaded. |
 | `--plugin <name>` | Launch with a specific plugin enabled. |
-| `--session <id>` | Resume a saved session (use the full id from `klim agents sessions list`). |
+| `--session <id>` | Resume a saved session (use the full id from `klim agent session list`). |
 | `--print-only` | Print the launch command instead of executing it — useful for scripts or remote shells. |
 | `--cwd <path>` | Override the working directory for the launched session. |
 
@@ -30,13 +30,13 @@ klim agents launch [flags]
 
 ```bash
 # Start a Claude Code session with the summarize skill loaded
-klim agents launch --provider claude-code --skill summarize
+klim agent launch --provider claude-code --skill summarize
 
 # Resume a saved session by id (URL-escaped path)
-klim agents launch --session "claude:home%2Fuser%2Frepo"
+klim agent launch --session "claude:home%2Fuser%2Frepo"
 
 # Just show me the command — don't execute it
-klim agents launch --provider copilot-cli --plugin test-runner --print-only
+klim agent launch --provider copilot-cli --plugin test-runner --print-only
 ```
 
 ## How it works

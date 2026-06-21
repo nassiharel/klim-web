@@ -29,7 +29,7 @@
           <h3 class="display mt-3 text-[1.7rem]" style="color: var(--fg);">A file your repo can own.</h3>
           <p class="mt-3 leading-[1.65]" style="color: var(--fg-muted);">
             <code class="font-mono text-[0.92em]" style="color: var(--fg);">.klim.yaml</code> lives next to your code.
-            Required tools, version ranges, a pack or two. <code class="font-mono text-[0.92em]" style="color: var(--fg);">klim init</code>
+            Required tools, version ranges, a pack or two. <code class="font-mono text-[0.92em]" style="color: var(--fg);">klim project init</code>
             scaffolds it from what your repo already references.
           </p>
         </div>
@@ -56,7 +56,7 @@
       <!-- 02 · diff -->
       <article class="grid gap-8 md:grid-cols-12 md:gap-12">
         <div class="order-2 md:order-1 md:col-span-7">
-          <p class="filename mb-2">$ klim diff teammate.yaml</p>
+          <p class="filename mb-2">$ klim plan diff teammate.yaml</p>
           <div class="cli overflow-hidden px-5 py-4 text-[0.82rem]">
 <pre class="m-0"><code>  tool         you                they
   <span class="c-fg">go</span>           <span class="c-green">1.22.4</span>             <span class="c-green">1.22.4</span>            <span class="c-green">match</span>
@@ -92,7 +92,7 @@
           </p>
         </div>
         <div class="md:col-span-7">
-          <p class="filename mb-2">$ klim apply  —  postcheck + auto checkpoint</p>
+          <p class="filename mb-2">$ klim plan apply  —  postcheck + auto checkpoint</p>
           <div class="cli overflow-hidden px-5 py-4 text-[0.82rem]">
 <pre class="m-0"><code><span class="c-dim">capturing checkpoint</span> <span class="c-blue">pre-apply-2026-06-15T11:42Z</span>  ✓
 <span class="c-green">+</span> sops 3.9.1            <span class="c-dim">brew install sops</span>          ✓
@@ -103,7 +103,7 @@ postcheck:
   <span class="c-green">✓</span> shell resolution   <span class="c-green">✓</span> binary validation
   <span class="c-green">✓</span> PATH consistency   <span class="c-green">✓</span> manager integrity
 
-<span class="c-dim">to undo:</span> <span class="c-fg">klim rollback pre-apply-2026-06-15T11:42Z</span></code></pre>
+<span class="c-dim">to undo:</span> <span class="c-fg">klim plan rollback pre-apply-2026-06-15T11:42Z</span></code></pre>
           </div>
         </div>
       </article>
@@ -113,7 +113,7 @@ postcheck:
       <!-- 04 · score / badge -->
       <article class="grid gap-8 md:grid-cols-12 md:gap-12">
         <div class="order-2 md:order-1 md:col-span-7">
-          <p class="filename mb-2">$ klim score --badge</p>
+          <p class="filename mb-2">$ klim security score --badge</p>
           <div class="cli overflow-hidden px-5 py-4 text-[0.82rem]">
 <pre class="m-0"><code>environment score      <span class="c-green">94 / 100</span>   <span class="c-dim">grade A</span>
 
@@ -145,19 +145,19 @@ shields.io badge written to <span class="c-fg">README.md</span>  ✓</code></pre
           <h3 class="display mt-3 text-[1.7rem]" style="color: var(--fg);">Send your toolchain in a chat message.</h3>
           <p class="mt-3 leading-[1.65]" style="color: var(--fg-muted);">
             Compact <code class="font-mono text-[0.92em]" style="color: var(--fg);">klim:v1:…</code> tokens encode the
-            essentials. The recipient runs <code class="font-mono text-[0.92em]" style="color: var(--fg);">klim open</code>
+            essentials. The recipient runs <code class="font-mono text-[0.92em]" style="color: var(--fg);">klim share link open</code>
             and lands on the same setup.
           </p>
         </div>
         <div class="md:col-span-7">
-          <p class="filename mb-2">$ klim share  →  paste  →  klim open</p>
+          <p class="filename mb-2">$ klim share link  →  paste  →  klim share link open</p>
           <div class="cli overflow-hidden px-5 py-4 text-[0.82rem]">
-<pre class="m-0"><code><span class="c-prompt">you  $</span> <span class="c-fg">klim share</span>
+<pre class="m-0"><code><span class="c-prompt">you  $</span> <span class="c-fg">klim share link</span>
 <span class="c-blue">klim:v1:eyJ0b29scyI6WyJnbyIsInRlcmYiLCJrdWJlIl0sInBhY2tzIjpb</span><span class="c-dim">…</span>
 
-<span class="c-prompt">them $</span> <span class="c-fg">klim open klim:v1:eyJ0b29scyI6...</span>
+<span class="c-prompt">them $</span> <span class="c-fg">klim share link open klim:v1:eyJ0b29scyI6...</span>
 <span class="c-dim">reading 8 tools, 1 pack…</span>
-<span class="c-dim">install plan ready — run</span> <span class="c-fg">klim apply</span> <span class="c-dim">to continue</span></code></pre>
+<span class="c-dim">install plan ready — run</span> <span class="c-fg">klim plan apply</span> <span class="c-dim">to continue</span></code></pre>
           </div>
         </div>
       </article>
@@ -169,7 +169,7 @@ shields.io badge written to <span class="c-fg">README.md</span>  ✓</code></pre
         <div class="order-2 md:order-1 md:col-span-7">
           <p class="filename mb-2">agent · stable JSON · deterministic exit codes</p>
           <div class="cli overflow-hidden px-5 py-4 text-[0.82rem]">
-<pre class="m-0"><code><span class="c-prompt">$</span> <span class="c-fg">klim check --output json</span>
+<pre class="m-0"><code><span class="c-prompt">$</span> <span class="c-fg">klim project check --output json</span>
 {'{'}
   <span class="c-blue">"project"</span>:  <span class="c-amber">".klim.yaml"</span>,
   <span class="c-blue">"status"</span>:   <span class="c-amber">"needs_action"</span>,

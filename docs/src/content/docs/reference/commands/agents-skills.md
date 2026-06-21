@@ -1,17 +1,17 @@
 ---
-title: "klim agents skills"
+title: "klim agent skill"
 description: Browse agent skills across providers.
 ---
 
 Skills are reusable prompts / playbooks an agent loads on demand.
-`klim agents skills` enumerates them and lets you preview one without
+`klim agent skill` enumerates them and lets you preview one without
 launching the agent.
 
 ## Subcommands
 
 ```bash
-klim agents skills list
-klim agents skills show --provider <p> <name>
+klim agent skill list
+klim agent skill show --provider <p> <name>
 ```
 
 | Command | Description |
@@ -30,16 +30,16 @@ klim agents skills show --provider <p> <name>
 
 ```bash
 # List all detected skills
-klim agents skills list
+klim agent skill list
 
 # Preview a specific skill's body
-klim agents skills show --provider claude-code summarize
+klim agent skill show --provider claude-code summarize
 
 # Just claude-code's skills, JSON
-klim agents skills list --provider claude-code --output json
+klim agent skill list --provider claude-code --output json
 ```
 
 ## See also
 
-- [`klim agents launch --skill <name>`](/reference/commands/agents-launch/) —
+- [`klim agent launch --skill <name>`](/reference/commands/agents-launch/) —
   open a session with a skill loaded.

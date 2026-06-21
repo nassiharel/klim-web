@@ -1,18 +1,18 @@
 ---
-title: "klim remove"
+title: "klim tool remove"
 description: Remove installed tools via the system package manager
 ---
 
-`klim remove` uninstalls tools using the package manager they were
-originally installed from (detected via the `klim list` scan), or the
+`klim tool remove` uninstalls tools using the package manager they were
+originally installed from (detected via the `klim tool list` scan), or the
 `--source` you specify. Falls back to OS-priority when the installed
 source isn't recorded. Source precedence overall matches
-[`klim install`](./install).
+[`klim tool install`](./install).
 
 ## Usage
 
 ```bash
-klim remove [tool...] [flags]
+klim tool remove [tool...] [flags]
 ```
 
 At least one positional tool name **or** `--pack` is required.
@@ -27,11 +27,11 @@ At least one positional tool name **or** `--pack` is required.
 | Not in catalog | reported, skipped |
 
 The self-protection refuses to remove the binary named `klim`, so
-`klim remove klim` never runs the underlying package manager.
+`klim tool remove klim` never runs the underlying package manager.
 
 ## Flags
 
-Same as [`klim install`](./install#flags):
+Same as [`klim tool install`](./install#flags):
 `--source`, `--pack` (repeatable), `--dry-run`, `--yes`/`-y`,
 `--refresh`, `--output`.
 
@@ -39,21 +39,21 @@ Same as [`klim install`](./install#flags):
 
 ```bash
 # Remove a single tool
-klim remove jq
+klim tool remove jq
 
 # Remove every installed tool in a pack
-klim remove --pack go-developer --yes
+klim tool remove --pack go-developer --yes
 
 # Pin the package manager
-klim remove jq fzf --source brew --dry-run
+klim tool remove jq fzf --source brew --dry-run
 ```
 
 ## Exit codes
 
-Same as `klim install`: 0 OK, 1 runtime error, 2 usage error,
+Same as `klim tool install`: 0 OK, 1 runtime error, 2 usage error,
 3 partial failure.
 
 ## See also
 
-- [`klim install`](./install)
-- [`klim upgrade`](./upgrade)
+- [`klim tool install`](./install)
+- [`klim tool upgrade`](./upgrade)

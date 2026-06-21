@@ -1,9 +1,9 @@
 ---
-title: klim health
+title: klim doctor
 description: Environment health diagnostics and PATH conflict visualization.
 ---
 
-`klim health` inspects your local development environment for issues
+`klim doctor` inspects your local development environment for issues
 that aren't supply-chain risks but still cause real friction: duplicate
 or broken `PATH` entries, multiple installations of the same tool
 across different package managers, missing PMs that own tools you
@@ -15,15 +15,15 @@ during its last scan (`--refresh` forces a fresh one).
 ## Synopsis
 
 ```
-klim health                  # all diagnostics, grouped by category
-klim health path             # PATH-conflict visualization (Active vs Shadowed)
+klim doctor                  # all diagnostics, grouped by category
+klim doctor path             # PATH-conflict visualization (Active vs Shadowed)
 ```
 
-`klim health` is the top-level home for environment checks. Supply-chain
+`klim doctor` is the top-level home for environment checks. Supply-chain
 checks (vulnerabilities, archived upstreams, compliance) live under
 [`klim security`](../security/).
 
-## `klim health`
+## `klim doctor`
 
 Runs the full diagnostic suite and prints findings grouped by
 category (PATH, Tools, Package Managers, Cache). Each finding has a
@@ -40,7 +40,7 @@ Flags:
 Exit codes: `0` = no errors found (warnings and info still possible),
 `1` = one or more `error`-severity findings.
 
-## `klim health path`
+## `klim doctor path`
 
 A focused view of PATH-shadowing situations. For every tool with more
 than one binary on PATH it shows:
@@ -81,7 +81,7 @@ versions across PATH copies.
 ## Example
 
 ```
-$ klim health path
+$ klim doctor path
   By tool — 2 tool(s) with multiple PATH copies, 3 shadowed total
 
   Node.js  ⚠ version conflict
@@ -113,9 +113,9 @@ Every fix that touches `$PATH` (duplicate-removal, missing-dir cleanup, reorder)
 #### CLI access
 
 ```
-klim health path-backups list                    # browse every backup
-klim health path-backups show <name>             # inspect one backup
-klim health path-backups restore-cmd <name>      # print the restore command
+klim doctor path-backups list                    # browse every backup
+klim doctor path-backups show <name>             # inspect one backup
+klim doctor path-backups restore-cmd <name>      # print the restore command
 ```
 
 The `<name>` argument accepts the bare filename, the full file path, or an unambiguous prefix. `restore-cmd` emits the restore command to stdout (so it can be piped) and a reminder to stderr — review the command before pasting it into your shell.
@@ -135,6 +135,6 @@ command: "$new = ..."          # the command that was about to run
 ## Related
 
 - [`klim security`](../security/) — supply-chain checks (vuln, audit, compliance)
-- [`klim score`](../score/) — composite per-tool security score
-- [`klim plan`](../plan/) — preview pending changes with confidence scoring
-- [`klim apply`](../apply/) — execute changes with auto-checkpoint and postcheck
+- [`klim security score`](../score/) — composite per-tool security score
+- [`klim plan show`](../plan/) — preview pending changes with confidence scoring
+- [`klim plan apply`](../apply/) — execute changes with auto-checkpoint and postcheck

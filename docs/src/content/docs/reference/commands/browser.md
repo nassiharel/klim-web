@@ -70,7 +70,7 @@ SSE.
 
 The action chooses a package manager automatically:
 - **Install** uses the best available source for your OS (the same
-  rule `klim list` uses for its install commands).
+  rule `klim tool list` uses for its install commands).
 - **Upgrade** and **Remove** prefer the source the tool is already
   installed from.
 
@@ -131,12 +131,12 @@ curl -s http://127.0.0.1:7777/api/dashboard | jq .updates_available
   when the server is reachable over loopback. Browsers send the
   header automatically for in-page navigation.
 - Action jobs (install / upgrade / remove) shell out to the user's
-  package managers using the same templates `klim list` uses. klim
+  package managers using the same templates `klim tool list` uses. klim
   itself does not run anything as root; sudo prompts behave the same
   way they do from the terminal.
 
 ## See Also
 
-- [`klim list`](../list/) — Same data on the terminal.
-- [`klim info`](../info/) — Single-tool detail in the terminal.
-- [`klim trail`](../trail/) — Toolchain history.
+- [`klim tool list`](../list/) — Same data on the terminal.
+- [`klim tool info`](../info/) — Single-tool detail in the terminal.
+- [`klim env trail`](../trail/) — Toolchain history.

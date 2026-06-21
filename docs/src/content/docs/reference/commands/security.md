@@ -8,7 +8,7 @@ safety of your toolchain. With no arguments it prints a summary across
 all subcommands; otherwise, dispatch to a specific check.
 
 Environment health (PATH conflicts, multi-installs, missing PMs,
-stale caches) lives under the top-level [`klim health`](../health/)
+stale caches) lives under the top-level [`klim doctor`](../health/)
 command — it's a separate concern from supply-chain security.
 
 ## Synopsis
@@ -53,7 +53,7 @@ fetched from `compliance.url` in `config.yaml` and cached locally.
 The `max_vuln_severity` policy field reads the local vulnerability
 cache populated by `klim security vuln` and adds a violation for any
 tool whose worst severity meets or exceeds the threshold. The gate
-silently skips when the cache is empty — `klim install` won't fail
+silently skips when the cache is empty — `klim tool install` won't fail
 just because the user hasn't run a vuln scan. Run a fresh scan in
 CI to enforce the gate strictly.
 
@@ -65,8 +65,8 @@ and machine-readable payloads (`--output json`) to stdout. See
 
 ## Related
 
-- [`klim health`](../health/) — environment health & PATH diagnostics
+- [`klim doctor`](../health/) — environment health & PATH diagnostics
 - [`klim security vuln`](../vuln/) — vulnerability scan reference
-- [`klim score`](../score/) — composite security score per tool
-- [`klim trail`](../trail/) — change history (every install/upgrade)
+- [`klim security score`](../score/) — composite security score per tool
+- [`klim env trail`](../trail/) — change history (every install/upgrade)
 

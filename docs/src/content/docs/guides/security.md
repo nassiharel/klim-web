@@ -12,7 +12,7 @@ The doctor checks your environment for common issues that can cause confusion or
 ### CLI
 
 ```bash
-klim security health
+klim doctor
 ```
 
 ### What It Checks
@@ -101,7 +101,7 @@ Both commands support JSON output and meaningful exit codes:
 ```yaml
 # GitHub Actions example
 - name: Environment health check
-  run: klim security health --output json
+  run: klim doctor --output json
 
 - name: Security audit
   run: klim security audit --output json

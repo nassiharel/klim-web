@@ -1,5 +1,5 @@
 ---
-title: "klim score"
+title: "klim security score"
 description: Calculate your environment health score (0-100)
 ---
 
@@ -8,7 +8,7 @@ Compute a single health score for your dev environment by combining tool freshne
 ## Usage
 
 ```bash
-klim score [flags]
+klim security score [flags]
 ```
 
 ## Flags
@@ -44,13 +44,13 @@ klim score [flags]
 
 ```bash
 # Human-readable score card
-klim score
+klim security score
 
 # JSON for CI pipelines
-klim score --json
+klim security score --json
 
 # shields.io badge URL for README
-klim score --badge
+klim security score --badge
 ```
 
 ## Badge
@@ -58,12 +58,12 @@ klim score --badge
 Add to your README:
 
 ```markdown
-![klim score](https://img.shields.io/badge/klim%20score-85%2F100%20A-yellowgreen)
+![klim security score](https://img.shields.io/badge/klim%20score-85%2F100%20A-yellowgreen)
 ```
 
 Generate your actual badge URL with:
 ```bash
-klim score --badge
+klim security score --badge
 ```
 
 ## TUI
@@ -72,6 +72,6 @@ The score is shown in the **Dashboard** tab as a prominent gauge with grade.
 
 ## See Also
 
-- [klim security health](../security/) — Environment diagnostics
+- [klim doctor](../security/) — Environment diagnostics
 - [klim security audit](../security/) — Security audit
 - [klim security compliance](../security/) — Policy validation

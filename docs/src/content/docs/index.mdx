@@ -37,7 +37,7 @@ One binary. Cross-platform. Zero lock-in: every operation delegates to `winget`,
   />
   <LinkCard
     title="Quick Start"
-    description="Launch the TUI, list installed tools, run klim check, and import a manifest in five minutes."
+    description="Launch the TUI, list installed tools, run klim project check, and import a manifest in five minutes."
     href={`${base}getting-started/quickstart/`}
   />
 </CardGrid>
@@ -52,7 +52,7 @@ One binary. Cross-platform. Zero lock-in: every operation delegates to `winget`,
   />
   <LinkCard
     title="Team Manifests (.klim.yaml)"
-    description="Encode required tools and version constraints. klim check validates locally and in CI; klim init scaffolds one from your repo files."
+    description="Encode required tools and version constraints. klim project check validates locally and in CI; klim project init scaffolds one from your repo files."
     href={`${base}guides/team-manifests/`}
   />
   <LinkCard
@@ -62,12 +62,12 @@ One binary. Cross-platform. Zero lock-in: every operation delegates to `winget`,
   />
   <LinkCard
     title="Backup & Restore"
-    description="Export your toolchain to a YAML manifest and reinstall everything on a new machine with klim import."
+    description="Export your toolchain to a YAML manifest and reinstall everything on a new machine with klim share import."
     href={`${base}guides/backup-restore/`}
   />
   <LinkCard
     title="Share via tokens"
-    description="Compact klim:v1:... tokens for chat. Recipients run klim open <token> to install your toolchain."
+    description="Compact klim:v1:... tokens for chat. Recipients run klim share link open <token> to install your toolchain."
     href={`${base}reference/commands/share/`}
   />
   <LinkCard
@@ -76,7 +76,7 @@ One binary. Cross-platform. Zero lock-in: every operation delegates to `winget`,
     href={`${base}reference/commands/env/`}
   />
   <LinkCard
-    title="Toolchain history (klim trail)"
+    title="Toolchain history (klim env trail)"
     description="Git-style content-addressed snapshots of your environment. Capture, label, log, show, diff, and prune."
     href={`${base}reference/commands/trail/`}
   />
@@ -122,27 +122,27 @@ One binary. Cross-platform. Zero lock-in: every operation delegates to `winget`,
   />
   <LinkCard
     title="Onboarding wizard"
-    description="klim onboard scores tools by your dev role (web, devops, data, mobile, systems, security) and installs in one shot."
+    description="klim tool onboard scores tools by your dev role (web, devops, data, mobile, systems, security) and installs in one shot."
     href={`${base}reference/commands/onboard/`}
   />
   <LinkCard
     title="Try a tool"
-    description="klim try <tool> installs temporarily, runs your command, then asks keep-or-remove. Like npx, but for any CLI."
+    description="klim tool try <tool> installs temporarily, runs your command, then asks keep-or-remove. Like npx, but for any CLI."
     href={`${base}reference/commands/try/`}
   />
   <LinkCard
     title="Auto-install shims (proxy)"
-    description="klim proxy add kubectl creates a shim that installs the tool on first run. Lazy installation for tools you might need."
+    description="klim shell proxy add kubectl creates a shim that installs the tool on first run. Lazy installation for tools you might need."
     href={`${base}reference/commands/proxy/`}
   />
   <LinkCard
     title="Update watch"
-    description="klim watch reports available updates across the whole toolchain. Cron-friendly with --output json for notification scripts."
+    description="klim tool watch reports available updates across the whole toolchain. Cron-friendly with --output json for notification scripts."
     href={`${base}reference/commands/watch/`}
   />
   <LinkCard
     title="Why is this installed?"
-    description="klim why <tool> shows where a tool is referenced — projects, packs, related tools, and the package managers that can supply it."
+    description="klim tool why <tool> shows where a tool is referenced — projects, packs, related tools, and the package managers that can supply it."
     href={`${base}reference/commands/why/`}
   />
 </CardGrid>
@@ -156,13 +156,13 @@ One binary. Cross-platform. Zero lock-in: every operation delegates to `winget`,
     href={`${base}reference/commands/install/`}
   />
   <LinkCard
-    title="Tool detail (klim info)"
+    title="Tool detail (klim tool info)"
     description="Every install location, every available package source, GitHub stats, project / pack references, related tools — one screen."
     href={`${base}reference/commands/info/`}
   />
   <LinkCard
     title="Search"
-    description="klim search <query> ranks the marketplace by name, tag, and description. Use it from the CLI or the TUI's filter sidebar."
+    description="klim tool search <query> ranks the marketplace by name, tag, and description. Use it from the CLI or the TUI's filter sidebar."
     href={`${base}reference/commands/search/`}
   />
   <LinkCard
@@ -172,7 +172,7 @@ One binary. Cross-platform. Zero lock-in: every operation delegates to `winget`,
   />
   <LinkCard
     title="Adding curated packs"
-    description="Bundle related tools (e.g. Cloud Essentials) so users install a whole stack with klim install --pack."
+    description="Bundle related tools (e.g. Cloud Essentials) so users install a whole stack with klim tool install --pack."
     href={`${base}guides/adding-packs/`}
   />
   <LinkCard
@@ -187,7 +187,7 @@ One binary. Cross-platform. Zero lock-in: every operation delegates to `winget`,
 <CardGrid>
   <LinkCard
     title="Shell completions"
-    description="Native tab completion for bash, zsh, fish, and PowerShell. klim completion <shell>."
+    description="Native tab completion for bash, zsh, fish, and PowerShell. klim shell completion <shell>."
     href={`${base}reference/commands/completion/`}
   />
   <LinkCard
@@ -211,10 +211,13 @@ One binary. Cross-platform. Zero lock-in: every operation delegates to `winget`,
 
 The full command reference lives under <a href={`${base}reference/commands/list/`}>Commands</a>. Highlights:
 
-- **Core**: `list`, `update`, `version`, `browser`
-- **Project**: `init`, `check`, `generate`
-- **Tools**: `install`, `upgrade`, `remove`, `info`, `search`, `try`, `onboard`, `why`, `watch`, `diff`
-- **Backup & sharing**: `export`, `import`, `share`, `open`, `env`, `trail`
-- **Health & security**: `security health`, `security audit`, `security vuln`, `security compliance`, `score`
-- **Shell integration**: `shell completion`, `shell hook`, `proxy`
+- **Tools**: `tool search`, `tool install`, `tool upgrade`, `tool remove`, `tool info`, `tool why`, `tool graph`, `tool list`, `tool try`, `tool onboard`, `tool watch`, `tool catalog`
+- **Projects**: `project init`, `project check`, `project generate`
+- **Plan & Apply**: `plan show`, `plan apply`, `plan diff`, `plan rollback`, `plan checkpoint`
+- **Environment**: `env show`, `env diff`, `env apply`, `env trail`
+- **Sharing**: `share export`, `share import`, `share link`, `share badge`
+- **Agents**: `agent list`, `agent search`, `agent launch`, `agent marketplace`, `agent plugin`, `agent skill`, `agent mcp`, `agent session`, `agent refresh`, `agent doctor`
+- **Security & Diagnostics**: `security audit`, `security vuln`, `security compliance`, `security score`, `doctor`, `doctor path`
+- **Shell**: `shell completion`, `shell hook`, `shell proxy`
 - **Configuration**: `config`, `config marketplace`
+- **System**: `update`, `version`, `browser`

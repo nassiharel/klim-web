@@ -1,14 +1,14 @@
 ---
-title: "klim import"
+title: "klim share import"
 description: Install tools from an exported manifest
 ---
 
-Install tools listed in a YAML manifest created by `klim export`.
+Install tools listed in a YAML manifest created by `klim share export`.
 
 ## Usage
 
 ```bash
-klim import <file> [flags]
+klim share import <file> [flags]
 ```
 
 ## Arguments
@@ -27,10 +27,10 @@ klim import <file> [flags]
 
 ```bash
 # Interactive — confirm before installing each tool
-klim import my-tools.yaml
+klim share import my-tools.yaml
 
 # Non-interactive — install everything
-klim import my-tools.yaml --yes
+klim share import my-tools.yaml --yes
 ```
 
 ## How It Works
@@ -42,5 +42,5 @@ klim import my-tools.yaml --yes
 
 ## See Also
 
-- [`klim export`](../export/) — Export tools to a manifest
-- [`klim open`](../open/) — Install from a share token
+- [`klim share export`](../export/) — Export tools to a manifest
+- [`klim share link open`](../open/) — Install from a share token

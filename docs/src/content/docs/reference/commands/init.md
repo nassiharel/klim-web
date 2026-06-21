@@ -1,5 +1,5 @@
 ---
-title: "klim init"
+title: "klim project init"
 description: Generate a .klim.yaml from project files
 ---
 
@@ -8,7 +8,7 @@ Scan your project directory to detect which CLI tools it uses, then generate a `
 ## Usage
 
 ```bash
-klim init [flags]
+klim project init [flags]
 ```
 
 ## Flags
@@ -42,19 +42,19 @@ Only tools that are both detected AND installed are included, so versions can be
 
 ```bash
 # Auto-detect from project files
-klim init
+klim project init
 
 # Include all installed tools (no detection)
-klim init --all
+klim project init --all
 
 # Pin minimum versions
-klim init --min-version
+klim project init --min-version
 
 # Set project name
-klim init --name my-project
+klim project init --name my-project
 
 # Overwrite an existing .klim.yaml
-klim init --force
+klim project init --force
 ```
 
 ## Output
@@ -74,14 +74,14 @@ optional:
 
 ## Symlinks
 
-If you keep `.klim.yaml` as a symbolic link (e.g. to a shared template), `klim init --force` writes through the link to the target file rather than replacing the link with a regular file. This works even when the link is dangling — the target file is created on first write **as long as the target's parent directory already exists**. A link like `.klim.yaml → ../shared/missing/manifest.yaml` will fail with `ENOENT` if `../shared/missing/` doesn't exist; klim does not auto-create parent directories under shared mounts. Symlink chains are followed by the OS up to its own limit (Linux 40 hops, Windows configurable); cycles surface as the OS-level error your platform produces (e.g. `ELOOP` on Linux, `ERROR_CANT_RESOLVE_FILENAME` on Windows) — klim doesn't translate these.
+If you keep `.klim.yaml` as a symbolic link (e.g. to a shared template), `klim project init --force` writes through the link to the target file rather than replacing the link with a regular file. This works even when the link is dangling — the target file is created on first write **as long as the target's parent directory already exists**. A link like `.klim.yaml → ../shared/missing/manifest.yaml` will fail with `ENOENT` if `../shared/missing/` doesn't exist; klim does not auto-create parent directories under shared mounts. Symlink chains are followed by the OS up to its own limit (Linux 40 hops, Windows configurable); cycles surface as the OS-level error your platform produces (e.g. `ELOOP` on Linux, `ERROR_CANT_RESOLVE_FILENAME` on Windows) — klim doesn't translate these.
 
 ## Permissions and metadata
 
-When a `.klim.yaml` already exists as a regular file (or as a symlink to an existing target), `klim init --force` preserves its current mode bits, ownership, ACLs (POSIX and Windows), extended attributes, and inode — the file is rewritten in place rather than replaced. A manually-restricted manifest (e.g. `chmod 600 .klim.yaml` because the manifest contains sensitive tool/version data) keeps those bits across re-inits. Hardlinks pointing at the manifest stay live. For freshly-created manifests klim *requests* mode `0644`; the actual mode is whatever the OS produces after applying the process umask (typically `0022`, giving `0644`) — on a system with `umask 0077` you'll see `0600` instead, and Windows does not honor POSIX bits 1:1. Note: when `--force` overwrites a *dangling* symlink, the target file is being created for the first time, so there is no prior metadata to preserve and the requested mode + umask rule applies.
+When a `.klim.yaml` already exists as a regular file (or as a symlink to an existing target), `klim project init --force` preserves its current mode bits, ownership, ACLs (POSIX and Windows), extended attributes, and inode — the file is rewritten in place rather than replaced. A manually-restricted manifest (e.g. `chmod 600 .klim.yaml` because the manifest contains sensitive tool/version data) keeps those bits across re-inits. Hardlinks pointing at the manifest stay live. For freshly-created manifests klim *requests* mode `0644`; the actual mode is whatever the OS produces after applying the process umask (typically `0022`, giving `0644`) — on a system with `umask 0077` you'll see `0600` instead, and Windows does not honor POSIX bits 1:1. Note: when `--force` overwrites a *dangling* symlink, the target file is being created for the first time, so there is no prior metadata to preserve and the requested mode + umask rule applies.
 
 ## See Also
 
-- [klim check](../check/) — Validate against .klim.yaml
-- [klim generate](../generate/) — Generate CI/container configs from .klim.yaml
+- [klim project check](../check/) — Validate against .klim.yaml
+- [klim project generate](../generate/) — Generate CI/container configs from .klim.yaml
 - [Team Manifests guide](../../../guides/team-manifests/)

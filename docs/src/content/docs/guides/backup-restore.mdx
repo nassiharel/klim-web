@@ -26,7 +26,7 @@ The Backup tab presents a menu with these options:
 ### Export Your Toolchain
 
 <Steps>
-1. Select **Export** from the Backup menu (or use CLI: `klim export`)
+1. Select **Export** from the Backup menu (or use CLI: `klim share export`)
 2. klim creates a YAML manifest with all your installed tools
 3. The manifest includes tool names, versions, and package IDs for all platforms
 </Steps>
@@ -34,27 +34,27 @@ The Backup tab presents a menu with these options:
 **CLI usage:**
 ```bash
 # Export to file
-klim export > my-tools.yaml
+klim share export > my-tools.yaml
 
 # Force fresh scan before export
-klim export --refresh > my-tools.yaml
+klim share export --refresh > my-tools.yaml
 ```
 
 ### Import on Another Machine
 
 <Steps>
 1. Copy the YAML manifest to the new machine
-2. Select **Import** from the Backup menu (or use CLI: `klim import`)
+2. Select **Import** from the Backup menu (or use CLI: `klim share import`)
 3. klim reads the manifest and installs each tool via the best available package manager
 </Steps>
 
 **CLI usage:**
 ```bash
 # Interactive — confirm before installing
-klim import my-tools.yaml
+klim share import my-tools.yaml
 
 # Non-interactive — install all
-klim import my-tools.yaml --yes
+klim share import my-tools.yaml --yes
 ```
 
 The manifest is **cross-platform** — it contains package IDs for all package managers (brew, winget, apt, scoop, choco, snap, npm), and klim automatically picks the right one for the current OS.
@@ -66,7 +66,7 @@ Share tokens are a compact way to share your toolchain without files.
 ### Generate a Token
 
 ```bash
-klim share
+klim share link
 # Output: klim:v1:H4sIAAAA...
 ```
 
@@ -75,10 +75,10 @@ Or press `s` on the **★ Favorites** tab to share just your favorites.
 ### Install from a Token
 
 ```bash
-klim open klim:v1:H4sIAAAA...
+klim share link open klim:v1:H4sIAAAA...
 
 # Non-interactive
-klim open klim:v1:H4sIAAAA... --yes
+klim share link open klim:v1:H4sIAAAA... --yes
 ```
 
 Share tokens are perfect for sending via Slack, Teams, email, or any messaging platform.

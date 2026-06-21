@@ -1,16 +1,16 @@
 ---
-title: "klim agents list"
+title: "klim agent list"
 description: List discovered agent marketplaces, plugins, skills, MCPs, and sessions across every detected provider.
 ---
 
-`klim agents list` enumerates every agent entity klim has detected on
+`klim agent list` enumerates every agent entity klim has detected on
 this host: marketplaces, plugins, skills, MCPs, and sessions. Filter
 by type, provider, or installation state to narrow the result.
 
 ## Usage
 
 ```bash
-klim agents list [flags]
+klim agent list [flags]
 ```
 
 ## Flags
@@ -21,7 +21,7 @@ klim agents list [flags]
 | `--provider` | Limit to one provider: `claude-code`, `copilot-cli`, `mcp-registry`. |
 | `--installed` | Show only installed entities (plugins / MCPs). |
 | `--available` | Show only available (non-installed) catalog entries. |
-| `--search` | Fuzzy filter — same as `klim agents search <query>` but applied to the list output. |
+| `--search` | Fuzzy filter — same as `klim agent search <query>` but applied to the list output. |
 | `--refresh` | Ignore the agents scan cache and rescan from disk. |
 | `--output` | `text` (default), `json`, or `yaml`. |
 
@@ -29,19 +29,19 @@ klim agents list [flags]
 
 ```bash
 # Everything detected, grouped by provider
-klim agents list
+klim agent list
 
 # Only Claude Code's MCPs
-klim agents list --provider claude-code --type mcp
+klim agent list --provider claude-code --type mcp
 
 # Installed plugins only
-klim agents list --type plugin --installed
+klim agent list --type plugin --installed
 
 # Pipe to jq for scripting
-klim agents list --output json | jq '.entities[] | select(.installed==true) | .name'
+klim agent list --output json | jq '.entities[] | select(.installed==true) | .name'
 
 # Snapshot to YAML
-klim agents list --output yaml > agents-state.yaml
+klim agent list --output yaml > agents-state.yaml
 ```
 
 ## Output

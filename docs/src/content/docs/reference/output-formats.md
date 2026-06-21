@@ -27,9 +27,9 @@ means you can pipe stdout into `jq`, `yq`, or a file with no
 post-processing:
 
 ```bash
-klim list --output json | jq '.tools[] | select(.installed==true) | .name'
-klim score --output yaml > score.yaml
-klim install kubectl --output json 2> install.log
+klim tool list --output json | jq '.tools[] | select(.installed==true) | .name'
+klim security score --output yaml > score.yaml
+klim tool install kubectl --output json 2> install.log
 ```
 
 ## YAML schema matches JSON
@@ -39,11 +39,11 @@ The YAML encoder routes through JSON first, so YAML output uses the
 `omitempty`, and any custom `MarshalJSON` overrides:
 
 ```bash
-$ klim score --output json | head -3
+$ klim security score --output json | head -3
 {
   "total": 61,
   "max_total": 100,
-$ klim score --output yaml | head -3
+$ klim security score --output yaml | head -3
 total: 61
 max_total: 100
 grade: D
@@ -59,7 +59,7 @@ returns a **UsageError** and exits with code 2 — klim never silently
 falls back to text. Same for unknown values like `--output=jsno`:
 
 ```bash
-$ klim graph --output yaml
+$ klim tool graph --output yaml
 Error: --output=yaml is not supported for this command
 exit status 2
 ```
@@ -84,9 +84,9 @@ inside the main repo. As of klim's current release:
 
 ## See also
 
-- [`klim list`](/reference/commands/list/) — the canonical example of
+- [`klim tool list`](/reference/commands/list/) — the canonical example of
   per-tool structured output.
-- [`klim score`](/reference/commands/score/) — environment health score
+- [`klim security score`](/reference/commands/score/) — environment health score
   as JSON, YAML, or a Shields.io badge URL.
 - [`klim env`](/reference/commands/env/) — full environment manifests
   for backup / share.

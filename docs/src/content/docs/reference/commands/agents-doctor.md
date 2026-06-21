@@ -1,18 +1,18 @@
 ---
-title: "klim agents doctor"
+title: "klim agent doctor"
 description: Diagnose provider detection, missing binaries, and stale agent caches.
 ---
 
-`klim agents doctor` answers the question *"why doesn't klim see my
+`klim agent doctor` answers the question *"why doesn't klim see my
 Claude Code plugins?"* It walks each known provider, checks whether
 its CLI binary is on `PATH`, validates the on-disk layout, and reports
-any issues that would prevent `klim agents` from listing accurate
+any issues that would prevent `klim agent` from listing accurate
 state.
 
 ## Usage
 
 ```bash
-klim agents doctor [flags]
+klim agent doctor [flags]
 ```
 
 ## Flags
@@ -27,20 +27,20 @@ klim agents doctor [flags]
 
 | Check | Why it matters |
 |-------|---------------|
-| Provider binary on `PATH` | `klim agents launch` exec's the provider directly; missing binaries make launch fail. |
+| Provider binary on `PATH` | `klim agent launch` exec's the provider directly; missing binaries make launch fail. |
 | Expected config directory exists | If the provider's directory is missing, plugins / MCPs / sessions will appear empty. |
 | Manifest files are well-formed | Corrupt JSON / YAML in a provider's plugin manifest hides every entity for that provider. |
-| Cache freshness | Stale cache > 24 h triggers a soft warning to run `klim agents refresh`. |
+| Cache freshness | Stale cache > 24 h triggers a soft warning to run `klim agent refresh`. |
 | Marketplaces reachable | For providers with remote marketplaces, can the configured URL be loaded? |
 
 ## Examples
 
 ```bash
 # Full diagnosis across every provider
-klim agents doctor
+klim agent doctor
 
 # JSON for CI / scripting
-klim agents doctor --output json | jq '.issues[] | select(.severity=="error")'
+klim agent doctor --output json | jq '.issues[] | select(.severity=="error")'
 ```
 
 ## Output
@@ -59,7 +59,7 @@ follows the same schema as `klim doctor`:
       "severity": "warning",
       "provider": "copilot-cli",
       "message": "agents cache is 26h old",
-      "fix": "run `klim agents refresh`"
+      "fix": "run `klim agent refresh`"
     }
   ]
 }

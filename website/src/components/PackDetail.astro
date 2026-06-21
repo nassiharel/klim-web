@@ -44,11 +44,11 @@ const categories = [...new Set(resolvedTools.map((t: any) => t.category))];
 <section class="mb-12">
   <p class="mono-label">install</p>
   <h2 class="display mt-2 text-[1.5rem]" style="color: var(--fg);">Apply this pack</h2>
-  <p class="filename mt-4 mb-2">$ klim install --pack {pack.name}</p>
+  <p class="filename mt-4 mb-2">$ klim tool install --pack {pack.name}</p>
   <div class="cli px-5 py-4">
-    <pre class="m-0"><code><span class="c-prompt">$</span> <span class="c-fg">klim install --pack {pack.name}</span>
+    <pre class="m-0"><code><span class="c-prompt">$</span> <span class="c-fg">klim tool install --pack {pack.name}</span>
 <span class="c-dim">resolving {pack.tools.length} tools…</span>
-<span class="c-dim">run</span> <span class="c-fg">klim plan</span> <span class="c-dim">to preview before apply</span></code></pre>
+<span class="c-dim">run</span> <span class="c-fg">klim plan show</span> <span class="c-dim">to preview before apply</span></code></pre>
   </div>
 </section>
 

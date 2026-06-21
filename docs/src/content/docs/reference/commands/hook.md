@@ -3,7 +3,7 @@ title: "klim shell hook"
 description: Generate shell hook for automatic .klim.yaml checking
 ---
 
-Generate a shell hook that automatically runs `klim check` when you `cd` into a directory with a `.klim.yaml` file — like nvm or direnv for your toolchain.
+Generate a shell hook that automatically runs `klim project check` when you `cd` into a directory with a `.klim.yaml` file — like nvm or direnv for your toolchain.
 
 ## Usage
 
@@ -15,7 +15,7 @@ klim shell hook <bash|zsh|fish|powershell>
 
 1. You add the hook to your shell startup file
 2. Every time you `cd` into a directory, the hook walks up the directory tree
-3. If it finds a `.klim.yaml`, it runs `klim check` silently
+3. If it finds a `.klim.yaml`, it runs `klim project check` silently
 4. Only prints output when tools are missing or outdated
 
 ## Setup
@@ -41,11 +41,11 @@ When you `cd` into a project with missing tools:
 ```
     ✗ kubectl              —            (>=1.28)
     ⚠ terraform            1.5.0        (>=1.7)
-  Run 'klim check' for details or 'klim import' to install missing tools.
+  Run 'klim project check' for details or 'klim share import' to install missing tools.
 ```
 
 ## See Also
 
-- [klim completion](../completion/) — Shell tab completions
-- [klim check](../check/) — Manual project validation
+- [klim shell completion](../completion/) — Shell tab completions
+- [klim project check](../check/) — Manual project validation
 - [Shell Integration guide](../../../guides/shell-integration/)

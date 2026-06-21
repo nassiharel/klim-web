@@ -1,9 +1,9 @@
 ---
-title: "klim agents search"
+title: "klim agent search"
 description: Fuzzy-search across every agent entity klim has detected.
 ---
 
-`klim agents search` runs a fuzzy match across every detected agent
+`klim agent search` runs a fuzzy match across every detected agent
 entity (marketplaces, plugins, skills, MCPs, sessions) and ranks the
 results by score. Use `type:query` to scope the search to a single
 entity type.
@@ -11,7 +11,7 @@ entity type.
 ## Usage
 
 ```bash
-klim agents search <query> [flags]
+klim agent search <query> [flags]
 ```
 
 ## Flags
@@ -39,13 +39,13 @@ type:
 
 ```bash
 # Fuzzy search across everything
-klim agents search react
+klim agent search react
 
 # Scoped — only plugins
-klim agents search plugin:auth
+klim agent search plugin:auth
 
 # Limit + JSON output
-klim agents search test --limit 5 --output json
+klim agent search test --limit 5 --output json
 ```
 
 ## Output

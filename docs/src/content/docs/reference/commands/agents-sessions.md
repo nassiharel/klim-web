@@ -1,24 +1,24 @@
 ---
-title: "klim agents sessions"
+title: "klim agent session"
 description: List, resume, and delete agent sessions.
 ---
 
-Each provider keeps a record of past agent conversations. `klim agents
+Each provider keeps a record of past agent conversations. `klim agent
 sessions` is a uniform view: list them, resume one, or delete an old
 session you no longer need.
 
 ## Subcommands
 
 ```bash
-klim agents sessions list
-klim agents sessions resume <id>
-klim agents sessions delete <id>
+klim agent session list
+klim agent session resume <id>
+klim agent session delete <id>
 ```
 
 | Command | Description |
 |---------|-------------|
 | `list` | Show every saved session across providers. |
-| `resume` | Re-open a session — equivalent to `klim agents launch --session <id>`. |
+| `resume` | Re-open a session — equivalent to `klim agent launch --session <id>`. |
 | `delete` | Delete a session record from the provider's history store. |
 
 ## Flags
@@ -39,21 +39,21 @@ claude:home%2Fuser%2Frepo:4b5e737e
 copilot:home%2Fuser%2Frepo:770b0f2b
 ```
 
-You can copy a row's id from `klim agents sessions list` and pass it
+You can copy a row's id from `klim agent session list` and pass it
 verbatim to `resume` / `delete`.
 
 ## Examples
 
 ```bash
 # Latest 20 sessions across every provider
-klim agents sessions list --limit 20
+klim agent session list --limit 20
 
 # Just Claude Code, YAML
-klim agents sessions list --provider claude-code --output yaml
+klim agent session list --provider claude-code --output yaml
 
 # Resume the most recent session for the current directory
-klim agents sessions resume claude:$(pwd | jq -sRr @uri)
+klim agent session resume claude:$(pwd | jq -sRr @uri)
 
 # Delete a session
-klim agents sessions delete copilot:home%2Fuser%2Frepo:770b0f2b
+klim agent session delete copilot:home%2Fuser%2Frepo:770b0f2b
 ```

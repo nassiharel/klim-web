@@ -1,14 +1,14 @@
 ---
-title: klim plan
+title: klim plan show
 description: Terraform-plan-style preview of toolchain changes, with confidence scoring, risk analysis, disk impact, and time estimates.
 ---
 
-`klim plan` is a read-only preview of every change `klim apply` would make. Modelled on `terraform plan` — produce a plan, review it, then execute it.
+`klim plan show` is a read-only preview of every change `klim plan apply` would make. Modelled on `terraform plan` — produce a plan, review it, then execute it.
 
 ## Synopsis
 
 ```
-klim plan [tool...] [flags]
+klim plan show [tool...] [flags]
 ```
 
 ## Sections
@@ -47,7 +47,7 @@ A score below 70% suggests reviewing the breaking-change notes before applying.
 ## Example
 
 ```
-$ klim plan
+$ klim plan show
 Planned changes:
 
   brew:
@@ -80,7 +80,7 @@ Estimated time:
 
 ## Related
 
-- [`klim apply`](../apply/) — execute the plan with safety wrapper
-- [`klim checkpoint`](../checkpoint/) — capture a named snapshot before applying
-- [`klim rollback`](../rollback/) — produce a plan that restores a checkpoint
-- [`klim upgrade`](../upgrade/) — bare-bones upgrade with no plan/checkpoint wrapper
+- [`klim plan apply`](../apply/) — execute the plan with safety wrapper
+- [`klim plan checkpoint`](../checkpoint/) — capture a named snapshot before applying
+- [`klim plan rollback`](../rollback/) — produce a plan that restores a checkpoint
+- [`klim tool upgrade`](../upgrade/) — bare-bones upgrade with no plan/checkpoint wrapper

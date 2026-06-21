@@ -1,28 +1,28 @@
 ---
-title: klim apply
-description: Execute the changes klim plan proposes, wrapped in an auto-checkpoint and post-apply validation.
+title: klim plan apply
+description: Execute the changes klim plan show proposes, wrapped in an auto-checkpoint and post-apply validation.
 ---
 
-`klim apply` runs the changes `klim plan` would output, wrapped in a safety net so you can trust the result.
+`klim plan apply` runs the changes `klim plan show` would output, wrapped in a safety net so you can trust the result.
 
 ## Synopsis
 
 ```
-klim apply [tool...] [flags]
+klim plan apply [tool...] [flags]
 ```
 
 ## Lifecycle
 
-Every `klim apply` invocation runs four phases:
+Every `klim plan apply` invocation runs four phases:
 
-1. **Pre-apply scan + checkpoint** — captures a named snapshot of the current toolchain to `~/.klim/checkpoints/pre-apply-<UTC>.yaml`. Roll back any time with `klim rollback pre-apply-<UTC>`.
-2. **Apply** — runs the same logic as `klim upgrade` for the targets.
+1. **Pre-apply scan + checkpoint** — captures a named snapshot of the current toolchain to `~/.klim/checkpoints/pre-apply-<UTC>.yaml`. Roll back any time with `klim plan rollback pre-apply-<UTC>`.
+2. **Apply** — runs the same logic as `klim tool upgrade` for the targets.
 3. **Postcheck** — re-scans and validates the resulting state through four parallel checks:
    - **Shell resolution** — every installed tool still resolves via `exec.LookPath`.
    - **Binary validation** — each binary stats + responds to `--version`/`-V`/`version`/`-v`/`--help`. The probe is generous: any non-zero output counts as "works". Probes the pre-apply binary too so a pre-existing breakage doesn't masquerade as a regression.
    - **PATH consistency** — no new missing/duplicate PATH entries (reported as `warn`, not `fail`).
    - **Manager integrity** — every package manager that owns at least one installed tool responds to a fast probe. Missing PMs are reported as `skip`, not `fail`.
-4. **Auto-rollback affordance** — on regression, prints the exact `klim rollback <name>` command needed to restore the pre-apply state. We deliberately do **not** auto-execute the rollback (downgrades are PM-specific and racy; you keep control).
+4. **Auto-rollback affordance** — on regression, prints the exact `klim plan rollback <name>` command needed to restore the pre-apply state. We deliberately do **not** auto-execute the rollback (downgrades are PM-specific and racy; you keep control).
 
 Failures classify regressions vs. pre-existing issues: only tools that were working pre-apply and are broken now trip the rollback prompt. Pre-existing problems are surfaced as warnings.
 
@@ -39,22 +39,22 @@ Failures classify regressions vs. pre-existing issues: only tools that were work
 | `--yes` | Skip the per-tool confirmation prompt. |
 | `--source <pm>` | Force a specific package manager. |
 
-Use `klim upgrade` if you want the apply step with **none** of the wrapper behaviour.
+Use `klim tool upgrade` if you want the apply step with **none** of the wrapper behaviour.
 
 ## Exit codes
 
 | Code | Meaning |
 |---|---|
 | `0` | Apply succeeded and every postcheck passed. |
-| `3` | Apply succeeded but postcheck detected one or more regressions. A `klim rollback <name>` command is printed; rerun the apply after rolling back, or use `--no-postcheck` to accept the warnings. |
+| `3` | Apply succeeded but postcheck detected one or more regressions. A `klim plan rollback <name>` command is printed; rerun the apply after rolling back, or use `--no-postcheck` to accept the warnings. |
 
 ## Example
 
 ```
-$ klim apply kubectl
+$ klim plan apply kubectl
 💾 Pre-apply checkpoint saved: pre-apply-20260511-163045
    File:    ~/.klim/checkpoints/pre-apply-20260511-163045.yaml
-   Restore: klim rollback pre-apply-20260511-163045
+   Restore: klim plan rollback pre-apply-20260511-163045
 
 ✓ kubectl 1.31.0 → 1.32.0 (brew)
 
@@ -69,7 +69,7 @@ Postcheck (3.2s):
 
 ## Related
 
-- [`klim plan`](../plan/) — preview the changes
-- [`klim checkpoint`](../checkpoint/) — manage named snapshots
-- [`klim rollback`](../rollback/) — produce a plan that restores a checkpoint
-- [`klim upgrade`](../upgrade/) — apply without checkpoint/postcheck
+- [`klim plan show`](../plan/) — preview the changes
+- [`klim plan checkpoint`](../checkpoint/) — manage named snapshots
+- [`klim plan rollback`](../rollback/) — produce a plan that restores a checkpoint
+- [`klim tool upgrade`](../upgrade/) — apply without checkpoint/postcheck

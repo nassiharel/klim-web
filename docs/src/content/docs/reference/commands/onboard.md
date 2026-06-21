@@ -1,5 +1,5 @@
 ---
-title: "klim onboard"
+title: "klim tool onboard"
 description: Recommend and install tools based on your development role
 ---
 
@@ -8,7 +8,7 @@ Interactive onboarding wizard that recommends tools based on what kind of develo
 ## Usage
 
 ```bash
-klim onboard [role] [flags]
+klim tool onboard [role] [flags]
 ```
 
 ## Flags
@@ -32,13 +32,13 @@ klim onboard [role] [flags]
 
 ```bash
 # Interactive — shows role picker
-klim onboard
+klim tool onboard
 
 # Recommend tools for DevOps
-klim onboard devops
+klim tool onboard devops
 
 # Preview recommendations without installing
-klim onboard web --list
+klim tool onboard web --list
 ```
 
 ## How It Works

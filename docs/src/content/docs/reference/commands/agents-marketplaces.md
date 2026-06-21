@@ -1,19 +1,19 @@
 ---
-title: "klim agents marketplaces"
+title: "klim agent marketplace"
 description: Browse and manage agent marketplaces (Claude Code, Copilot CLI).
 ---
 
 Some agent providers pull plugins / skills / MCPs from one or more
-marketplaces — URLs that point at a catalog index. `klim agents
+marketplaces — URLs that point at a catalog index. `klim agent
 marketplaces` lets you list, add, and remove those URLs through one
 common interface.
 
 ## Subcommands
 
 ```bash
-klim agents marketplaces list
-klim agents marketplaces add --provider <p> <url>
-klim agents marketplaces remove --provider <p> <url>
+klim agent marketplace list
+klim agent marketplace add --provider <p> <url>
+klim agent marketplace remove --provider <p> <url>
 ```
 
 | Command | Description |
@@ -33,13 +33,13 @@ klim agents marketplaces remove --provider <p> <url>
 
 ```bash
 # Show every configured marketplace
-klim agents marketplaces list
+klim agent marketplace list
 
 # Add a marketplace to Claude Code
-klim agents marketplaces add --provider claude-code https://example.com/cc-marketplace.yaml
+klim agent marketplace add --provider claude-code https://example.com/cc-marketplace.yaml
 
 # Remove a marketplace
-klim agents marketplaces remove --provider copilot-cli https://stale.example.com/idx.yaml
+klim agent marketplace remove --provider copilot-cli https://stale.example.com/idx.yaml
 ```
 
 ## Notes

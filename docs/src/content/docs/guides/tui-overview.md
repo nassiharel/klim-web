@@ -64,23 +64,23 @@ These work on every tab:
 
 ## Plan / apply / rollback workflow
 
-Press `P` from any tab to open the Plan modal — the same preview `klim plan` emits, rendered inline. Available actions inside the modal:
+Press `P` from any tab to open the Plan modal — the same preview `klim plan show` emits, rendered inline. Available actions inside the modal:
 
 | Key | Action |
 |-----|--------|
-| `a` | Apply the plan (shells out to `klim apply --yes` so the full checkpoint + postcheck wrapper still runs). |
+| `a` | Apply the plan (shells out to `klim plan apply --yes` so the full checkpoint + postcheck wrapper still runs). |
 | `c` | Capture a named checkpoint of the current toolchain. |
 | `b` | Open the checkpoint browser. `↑↓` navigate, `Enter` previews the rollback plan, `d` deletes, `Esc` returns. |
 | `r` | Rebuild the plan. |
 | `↑↓ / PgUp / PgDn / Home` | Scroll. |
 | `Esc / q` | Close. |
 
-The full CLI surface (`klim plan`, `klim apply`, `klim checkpoint`, `klim rollback`) still works identically and remains the reference for CI / agent integration. See the reference pages:
+The full CLI surface (`klim plan show`, `klim plan apply`, `klim plan checkpoint`, `klim plan rollback`) still works identically and remains the reference for CI / agent integration. See the reference pages:
 
-- [`klim plan`](../../reference/commands/plan/) — preview pending changes with 0-100% upgrade confidence per change
-- [`klim apply`](../../reference/commands/apply/) — execute, auto-checkpointed, post-validated
-- [`klim checkpoint`](../../reference/commands/checkpoint/) — capture / list / show / delete named snapshots
-- [`klim rollback`](../../reference/commands/rollback/) — produce a restore plan from a checkpoint
+- [`klim plan show`](../../reference/commands/plan/) — preview pending changes with 0-100% upgrade confidence per change
+- [`klim plan apply`](../../reference/commands/apply/) — execute, auto-checkpointed, post-validated
+- [`klim plan checkpoint`](../../reference/commands/checkpoint/) — capture / list / show / delete named snapshots
+- [`klim plan rollback`](../../reference/commands/rollback/) — produce a restore plan from a checkpoint
 
 ## Tool List Navigation
 

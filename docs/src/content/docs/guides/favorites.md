@@ -24,14 +24,14 @@ Switch to the **★ Favorites** tab (press `2`) to see all your favorited tools 
 
 ## Export Favorites
 
-Press `e` on the Favorites tab to export your favorited tools to a YAML manifest file. This creates a portable file you can use with `klim import` on another machine.
+Press `e` on the Favorites tab to export your favorited tools to a YAML manifest file. This creates a portable file you can use with `klim share import` on another machine.
 
 ## Share Favorites
 
 Press `s` to generate a compact share token that encodes your favorited tools. Send this token to a colleague — they run:
 
 ```bash
-klim open <token>
+klim share link open <token>
 ```
 
 to install the same set of tools.

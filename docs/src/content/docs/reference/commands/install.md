@@ -1,16 +1,16 @@
 ---
-title: "klim install"
+title: "klim tool install"
 description: Install one or more tools or packs via the system package manager
 ---
 
-`klim install` installs one or more tools (positional) and/or every tool
+`klim tool install` installs one or more tools (positional) and/or every tool
 in one or more packs (`--pack`). Each tool is installed via its
 preferred system package manager — klim does not bundle any binaries.
 
 ## Usage
 
 ```bash
-klim install [tool...] [flags]
+klim tool install [tool...] [flags]
 ```
 
 At least one positional tool name **or** `--pack` is required.
@@ -44,19 +44,19 @@ falls through to the next level rather than failing.
 
 ```bash
 # Install two tools using the OS-default package manager
-klim install jq fzf
+klim tool install jq fzf
 
 # Install everything in a curated pack
-klim install --pack go-developer
+klim tool install --pack go-developer
 
 # Force a specific package manager and skip the prompt
-klim install jq --source brew --yes
+klim tool install jq --source brew --yes
 
 # Combine multiple packs and preview the plan
-klim install --pack rust-dev --pack web-dev --dry-run
+klim tool install --pack rust-dev --pack web-dev --dry-run
 
 # Machine-readable output for CI / scripts
-klim install jq --output json
+klim tool install jq --output json
 ```
 
 ## Behavior
@@ -72,7 +72,7 @@ For each target:
   terminal.
 
 After execution klim invalidates its scan cache so subsequent commands
-(`klim list`, `klim info`, `klim security health`) rescan PATH.
+(`klim tool list`, `klim tool info`, `klim doctor`) rescan PATH.
 
 ## Exit codes
 
@@ -117,7 +117,7 @@ Schema (every field always present — empty arrays / `false` instead of missing
 
 ## See also
 
-- [`klim upgrade`](./upgrade) — bring installed tools to the latest version
-- [`klim remove`](./remove) — uninstall tools
-- [`klim import`](./import) — bulk install from a manifest file
+- [`klim tool upgrade`](./upgrade) — bring installed tools to the latest version
+- [`klim tool remove`](./remove) — uninstall tools
+- [`klim share import`](./import) — bulk install from a manifest file
 - [`klim config`](./config) — set `defaults.preferred_source`

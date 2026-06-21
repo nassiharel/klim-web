@@ -125,7 +125,7 @@ security:              # observational; never gates apply
 
 `klim env apply` is best-effort:
 
-1. **Tools** — runs the same install plan as `klim import`; tools
+1. **Tools** — runs the same install plan as `klim share import`; tools
    already installed locally are skipped, tools without a
    compatible package manager (e.g. apt-only on Windows) appear in
    the report as `skipped` rather than failing.
@@ -146,6 +146,6 @@ Cross-OS gaps surface as informational entries, never as errors.
 
 ## Related
 
-- [`klim share`](../share/) — narrower token (tool names only) for chat
-- [`klim export`](../export/) — full YAML manifest (tools + OS + arch)
-- [`klim import`](../import/) — install from a manifest file
+- [`klim share link`](../share/) — narrower token (tool names only) for chat
+- [`klim share export`](../export/) — full YAML manifest (tools + OS + arch)
+- [`klim share import`](../import/) — install from a manifest file

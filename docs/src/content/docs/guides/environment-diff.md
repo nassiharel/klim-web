@@ -3,7 +3,7 @@ title: Environment Diff
 description: Compare one developer environment against another
 ---
 
-Use `klim diff` to compare your installed tools against a manifest file or share token. It turns "works on my machine" into a concrete environment delta you can fix, review, or enforce in CI.
+Use `klim plan diff` to compare your installed tools against a manifest file or share token. It turns "works on my machine" into a concrete environment delta you can fix, review, or enforce in CI.
 
 ## Comparing Against a Manifest
 
@@ -11,10 +11,10 @@ Export your tools on one machine, then diff on another:
 
 ```bash
 # Machine A: export
-klim export > alice-tools.yaml
+klim share export > alice-tools.yaml
 
 # Machine B: compare
-klim diff alice-tools.yaml
+klim plan diff alice-tools.yaml
 ```
 
 ## Comparing Against a Share Token
@@ -23,11 +23,11 @@ Share tokens are compact strings you can paste in Slack or Teams:
 
 ```bash
 # Generate a token
-klim share
+klim share link
 # → klim:v1:H4sIAAAA...
 
 # Compare on another machine
-klim diff "klim:v1:H4sIAAAA..."
+klim plan diff "klim:v1:H4sIAAAA..."
 ```
 
 :::note
@@ -54,14 +54,14 @@ node      24.14.1 (winget)       —                ← local only
 
 ## CI Usage
 
-`klim diff` returns exit code 1 when differences are found:
+`klim plan diff` returns exit code 1 when differences are found:
 
 ```yaml
 - name: Check environment matches baseline
-  run: klim diff baseline-tools.yaml
+  run: klim plan diff baseline-tools.yaml
 ```
 
 ## See Also
 
 - [Backup & Restore](../backup-restore/) — Export and import tool manifests
-- [klim diff reference](../../reference/commands/diff/)
+- [klim plan diff reference](../../reference/commands/diff/)
