@@ -43,6 +43,7 @@ export default defineConfig({
           items: [
             { label: 'Installation', slug: 'getting-started/installation' },
             { label: 'Quick Start', slug: 'getting-started/quickstart' },
+            { label: 'Troubleshooting & FAQ', slug: 'troubleshooting' },
           ],
         },
         {
@@ -121,6 +122,15 @@ export default defineConfig({
               ],
             },
             {
+              label: 'Plan & Apply',
+              items: [
+                { label: 'plan', slug: 'reference/commands/plan' },
+                { label: 'apply', slug: 'reference/commands/apply' },
+                { label: 'rollback', slug: 'reference/commands/rollback' },
+                { label: 'checkpoint', slug: 'reference/commands/checkpoint' },
+              ],
+            },
+            {
               label: 'History',
               items: [
                 { label: 'trail', slug: 'reference/commands/trail' },
@@ -132,12 +142,14 @@ export default defineConfig({
                 { label: 'export', slug: 'reference/commands/export' },
                 { label: 'import', slug: 'reference/commands/import' },
                 { label: 'share', slug: 'reference/commands/share' },
+                { label: 'open', slug: 'reference/commands/open' },
                 { label: 'env', slug: 'reference/commands/env' },
               ],
             },
             {
               label: 'Health & Security',
               items: [
+                { label: 'health', slug: 'reference/commands/health' },
                 { label: 'security', slug: 'reference/commands/security' },
                 { label: 'security vuln', slug: 'reference/commands/vuln' },
                 { label: 'score', slug: 'reference/commands/score' },
@@ -156,6 +168,7 @@ export default defineConfig({
               items: [
                 { label: 'config', slug: 'reference/commands/config' },
                 { label: 'config marketplace', slug: 'reference/commands/marketplace' },
+                { label: 'tools', slug: 'reference/commands/tools' },
               ],
             },
           ],
