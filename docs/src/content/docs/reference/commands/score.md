@@ -72,6 +72,6 @@ The score is shown in the **Dashboard** tab as a prominent gauge with grade.
 
 ## See Also
 
-- [klim doctor](../security/) — Environment diagnostics
+- [klim doctor](../health/) — Environment diagnostics
 - [klim security audit](../security/) — Security audit
 - [klim security compliance](../security/) — Policy validation
