@@ -1,5 +1,5 @@
 ---
-title: "klim why"
+title: "klim tool why"
 description: Show why a tool is needed and where it's referenced
 ---
 
@@ -8,7 +8,7 @@ Show all references to a tool across projects, packs, and your system.
 ## Usage
 
 ```bash
-klim why <tool> [flags]
+klim tool why <tool> [flags]
 ```
 
 ## Flags
@@ -28,7 +28,7 @@ klim why <tool> [flags]
 ## Examples
 
 ```bash
-klim why kubectl
+klim tool why kubectl
 ```
 
 ```
@@ -89,5 +89,5 @@ The tool detail view (press Enter on any tool) includes a **"Referenced By"** se
 
 ## See Also
 
-- [klim check](../check/) — Validate project requirements
+- [klim project check](../check/) — Validate project requirements
 - [Team Manifests guide](../../../guides/team-manifests/)

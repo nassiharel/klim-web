@@ -1,9 +1,9 @@
 ---
-title: "klim trail"
+title: "klim env trail"
 description: Git for your dev environment — capture, log, show, diff, prune toolchain history
 ---
 
-`klim trail` records every captured state of your toolchain as a
+`klim env trail` records every captured state of your toolchain as a
 content-addressed snapshot, exposing git-style history inspection.
 
 Two captures of an identical environment share storage on disk — only
@@ -12,18 +12,18 @@ a new history entry is appended.
 ## Usage
 
 ```bash
-klim trail <subcommand>
+klim env trail <subcommand>
 ```
 
 ## Subcommands
 
 | Subcommand | Description |
 |---|---|
-| `klim trail capture` | Record the current toolchain as a new entry (forces a fresh PATH scan by default) |
-| `klim trail log` | Show entries newest-first, with `@<index>` and short ref columns |
-| `klim trail show <ref>` | Display the toolchain at a specific entry |
-| `klim trail diff <ref> [<ref>]` | Compare two entries (defaults second arg to `HEAD`) |
-| `klim trail prune` | Trim the trail and GC orphan objects |
+| `klim env trail capture` | Record the current toolchain as a new entry (forces a fresh PATH scan by default) |
+| `klim env trail log` | Show entries newest-first, with `@<index>` and short ref columns |
+| `klim env trail show <ref>` | Display the toolchain at a specific entry |
+| `klim env trail diff <ref> [<ref>]` | Compare two entries (defaults second arg to `HEAD`) |
+| `klim env trail prune` | Trim the trail and GC orphan objects |
 
 ## Refs
 
@@ -39,19 +39,19 @@ A `<ref>` can be:
 
 ```bash
 # Tag the env before risky changes.
-klim trail capture --label before-kubectl-upgrade
+klim env trail capture --label before-kubectl-upgrade
 
 # After upgrading kubectl, what changed?
-klim trail diff before-kubectl-upgrade
+klim env trail diff before-kubectl-upgrade
 
 # Show the full toolchain at a specific point.
-klim trail show HEAD~3
+klim env trail show HEAD~3
 
 # Newest 5 entries, structured for scripts.
-klim trail log --limit 5 --output json
+klim env trail log --limit 5 --output json
 
 # Trim to the 50 newest entries; orphan objects removed automatically.
-klim trail prune --keep 50
+klim env trail prune --keep 50
 ```
 
 ## JSON Output
@@ -59,7 +59,7 @@ klim trail prune --keep 50
 `log`, `show`, and `diff` accept `--output json` for scripting:
 
 ```bash
-$ klim trail show HEAD --output json
+$ klim env trail show HEAD --output json
 {
   "entry": {
     "index": 1,
@@ -122,26 +122,26 @@ hand-edited log without `schema_version` is also rejected.
 
 ## Capture defaults
 
-`klim trail capture` performs a fresh PATH scan by default so the
+`klim env trail capture` performs a fresh PATH scan by default so the
 recorded snapshot matches your current toolchain — not whatever the
 scan cache last saw. Pass `--refresh=false` to reuse the on-disk scan
 cache (useful only when chaining klim commands and you want them to
 see exactly the same view).
 
 `--label` must be unique. Re-using an existing label fails fast rather
-than creating an ambiguous label that would break `klim trail
+than creating an ambiguous label that would break `klim env trail
 show <label>`.
 
 ## What's NOT in the current release
 
 - **Auto-capture** on install / upgrade / remove — coming next.
-- **`klim trail revert`** — needs a real design pass for non-destructive
+- **`klim env trail revert`** — needs a real design pass for non-destructive
   default vs full convergence, and partial-failure modeling. Coming
   after auto-capture.
-- **`klim trail bisect`** — a future addition.
+- **`klim env trail bisect`** — a future addition.
 
 ## See Also
 
-- [`klim export`](../export/) — One-shot YAML manifest of installed tools.
-- [`klim diff`](../diff/) — Compare your env to an external manifest or share token.
+- [`klim share export`](../export/) — One-shot YAML manifest of installed tools.
+- [`klim plan diff`](../diff/) — Compare your env to an external manifest or share token.
 - [`klim security`](../security/) — Security / compliance / SBOM audit.

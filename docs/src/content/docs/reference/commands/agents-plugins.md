@@ -1,18 +1,18 @@
 ---
-title: "klim agents plugins"
+title: "klim agent plugin"
 description: List, install, and remove agent plugins.
 ---
 
 Plugins are the first-party / community extensions an agent CLI loads
-at startup. `klim agents plugins` is the cross-provider front-end for
+at startup. `klim agent plugin` is the cross-provider front-end for
 managing them.
 
 ## Subcommands
 
 ```bash
-klim agents plugins list
-klim agents plugins install --provider <p> <name>
-klim agents plugins remove --provider <p> <name>
+klim agent plugin list
+klim agent plugin install --provider <p> <name>
+klim agent plugin remove --provider <p> <name>
 ```
 
 | Command | Description |
@@ -34,16 +34,16 @@ klim agents plugins remove --provider <p> <name>
 
 ```bash
 # Every plugin klim can see
-klim agents plugins list
+klim agent plugin list
 
 # Only what's installed, as YAML
-klim agents plugins list --installed --output yaml
+klim agent plugin list --installed --output yaml
 
 # Install a plugin
-klim agents plugins install --provider claude-code react-test-helper
+klim agent plugin install --provider claude-code react-test-helper
 
 # Remove a plugin
-klim agents plugins remove --provider claude-code react-test-helper
+klim agent plugin remove --provider claude-code react-test-helper
 ```
 
 ## What gets called underneath

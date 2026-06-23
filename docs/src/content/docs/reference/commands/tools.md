@@ -1,5 +1,5 @@
 ---
-title: "klim tools"
+title: "klim tool catalog"
 description: Manage the tool catalog
 ---
 
@@ -8,7 +8,7 @@ Manage the local tool catalog cache.
 ## Usage
 
 ```bash
-klim tools <subcommand>
+klim tool catalog <subcommand>
 ```
 
 ## Subcommands
@@ -18,10 +18,10 @@ klim tools <subcommand>
 Print the path to the local catalog cache file:
 
 ```bash
-klim tools path
+klim tool catalog path
 # Output: /home/user/.klim/marketplace/marketplace-cache.yaml
 
-klim tools path --output json
+klim tool catalog path --output json
 # {"cache_path": "/home/user/.klim/marketplace/marketplace-cache.yaml"}
 ```
 

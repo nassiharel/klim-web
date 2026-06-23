@@ -49,27 +49,27 @@ For non-interactive usage in scripts, CI, or agent workflows, use subcommands di
 <Steps>
 1. **List installed tools:**
    ```bash
-   klim list
+   klim tool list
    ```
 
 2. **Inspect a single tool:**
    ```bash
-   klim info kubectl
+   klim tool info kubectl
    ```
 
 3. **Export your toolchain:**
    ```bash
-   klim export > my-tools.yaml
+   klim share export > my-tools.yaml
    ```
 
 4. **Import on another machine:**
    ```bash
-   klim import my-tools.yaml
+   klim share import my-tools.yaml
    ```
 
 5. **Capture your environment for later comparison:**
    ```bash
-   klim trail capture --label before-upgrade
+   klim env trail capture --label before-upgrade
    ```
 
 6. **Check for klim updates:**
@@ -85,7 +85,7 @@ For non-interactive usage in scripts, CI, or agent workflows, use subcommands di
 1. In the TUI, press **\*** on any tool to favorite it
 2. Switch to the **★ Favorites** tab (press **2**)
 3. Press **s** to generate a share token
-4. Send the token to a colleague — they run `klim open <token>` to install the same tools
+4. Send the token to a colleague — they run `klim share link open <token>` to install the same tools
 
 ### Batch Upgrade
 
@@ -95,26 +95,26 @@ For non-interactive usage in scripts, CI, or agent workflows, use subcommands di
 
 ### Create a Project Environment Contract
 
-1. Export your toolchain: `klim export > .klim.yaml`
+1. Export your toolchain: `klim share export > .klim.yaml`
 2. Commit `.klim.yaml` to your repository
-3. Team members and CI run: `klim check` to verify the environment contract
+3. Team members and CI run: `klim project check` to verify the environment contract
 
 ### Track Toolchain Changes Over Time
 
-`klim trail` is git-style history for your environment. Capture, diff, and roll forward across upgrades:
+`klim env trail` is git-style history for your environment. Capture, diff, and roll forward across upgrades:
 
-1. Capture before risky changes: `klim trail capture --label before-kubectl-upgrade`
+1. Capture before risky changes: `klim env trail capture --label before-kubectl-upgrade`
 2. Make your changes (`brew upgrade kubectl`, etc.)
-3. Capture again: `klim trail capture`
-4. See exactly what changed: `klim trail diff before-kubectl-upgrade`
+3. Capture again: `klim env trail capture`
+4. See exactly what changed: `klim env trail diff before-kubectl-upgrade`
 
 ### Inspect a Single Tool
 
-`klim info <tool>` is the CLI counterpart of the TUI's tool detail page — every install location, every available package source, GitHub stats, project / pack references, and related installed tools:
+`klim tool info <tool>` is the CLI counterpart of the TUI's tool detail page — every install location, every available package source, GitHub stats, project / pack references, and related installed tools:
 
 ```bash
-klim info terraform
-klim info terraform --output json   # for scripts
+klim tool info terraform
+klim tool info terraform --output json   # for scripts
 ```
 
 ## Next Steps

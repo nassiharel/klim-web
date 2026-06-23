@@ -60,7 +60,7 @@ The shell hook automatically checks `.klim.yaml` requirements when you `cd` into
 
 1. You `cd` into a directory
 2. The hook walks up the directory tree looking for `.klim.yaml`
-3. If found, it runs `klim check` silently
+3. If found, it runs `klim project check` silently
 4. Only prints output when tools are missing or outdated
 
 ### Setup
@@ -108,7 +108,7 @@ When you `cd` into a project with missing or outdated tools:
 $ cd my-k8s-project
     ✗ kubectl              —            (>=1.28)
     ⚠ terraform            1.5.0        (>=1.7)
-  Run 'klim check' for details or 'klim import' to install missing tools.
+  Run 'klim project check' for details or 'klim share import' to install missing tools.
 ```
 
 ## Both Together

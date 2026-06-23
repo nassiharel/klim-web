@@ -77,11 +77,11 @@ function fmtStars(n: number): string {
   <section class="mb-12">
     <p class="mono-label">install</p>
     <h2 class="display mt-2 text-[1.5rem]" style="color: var(--fg);">Add to your environment</h2>
-    <p class="filename mt-4 mb-2">$ klim install {tool.name}</p>
+    <p class="filename mt-4 mb-2">$ klim tool install {tool.name}</p>
     <div class="cli px-5 py-4">
-      <pre class="m-0"><code><span class="c-prompt">$</span> <span class="c-fg">klim install {tool.name}</span>
+      <pre class="m-0"><code><span class="c-prompt">$</span> <span class="c-fg">klim tool install {tool.name}</span>
 <span class="c-dim"># or pin a manager:</span>
-<span class="c-prompt">$</span> <span class="c-fg">klim install {tool.name}</span> <span class="c-flag">--source brew</span></code></pre>
+<span class="c-prompt">$</span> <span class="c-fg">klim tool install {tool.name}</span> <span class="c-flag">--source brew</span></code></pre>
     </div>
     <p class="mt-3 text-[0.85rem]" style="color: var(--fg-muted);">
       klim picks the best native package manager for your OS, or you can set

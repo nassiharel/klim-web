@@ -5,7 +5,7 @@ const docsURL = process.env.KLIM_WEBSITE_DOCS_URL ?? `${base}docs/`;
 
 <!--
   Hero: editorial display + warm sun-halo + two accent orbs. Real
-  `klim plan` block as the hero figure, framed with a soft accent glow.
+  `klim plan show` block as the hero figure, framed with a soft accent glow.
 -->
 <section class="relative pt-14 pb-24 md:pt-24 md:pb-32 overflow-hidden">
 
@@ -61,7 +61,7 @@ const docsURL = process.env.KLIM_WEBSITE_DOCS_URL ?? `${base}docs/`;
 
     <figure class="mt-16 rise rise-5">
       <figcaption class="filename mb-2 flex items-baseline justify-between">
-        <span><span style="color: var(--accent);">~/projects/api</span> ⟩ klim plan</span>
+        <span><span style="color: var(--accent);">~/projects/api</span> ⟩ klim plan show</span>
         <span class="hidden sm:inline">fig.&nbsp;1 — pending changes, grouped by manager</span>
       </figcaption>
 
@@ -75,7 +75,7 @@ const docsURL = process.env.KLIM_WEBSITE_DOCS_URL ?? `${base}docs/`;
           <span>zsh · klim 0.1.0</span>
         </div>
 
-        <pre class="m-0 overflow-x-auto px-5 py-5"><code><span class="c-prompt">$</span> <span class="c-fg">klim plan</span>
+        <pre class="m-0 overflow-x-auto px-5 py-5"><code><span class="c-prompt">$</span> <span class="c-fg">klim plan show</span>
 
 <span class="c-dim">Planning changes for</span> <span class="c-fg">.klim.yaml</span>  <span class="c-dim">(7 tools, 1 pack)</span>
 
@@ -88,7 +88,7 @@ const docsURL = process.env.KLIM_WEBSITE_DOCS_URL ?? `${base}docs/`;
 <span class="c-fg">summary</span>   <span class="c-green">+1</span>  <span class="c-amber">~2</span>  <span class="c-mag">·4</span>   <span class="c-dim">disk</span> 142 MB   <span class="c-dim">≈</span> 38s
 <span class="c-dim">checkpoint</span> <span class="c-blue">pre-apply-2026-06-15T11:42Z</span> <span class="c-dim">will be captured</span>
 
-<span class="c-prompt">$</span> <span class="c-fg">klim apply</span> <span class="c-flag">--yes</span>     <span class="c-dim"># or:</span> <span class="c-fg">klim diff teammate.yaml</span></code></pre>
+<span class="c-prompt">$</span> <span class="c-fg">klim plan apply</span> <span class="c-flag">--yes</span>     <span class="c-dim"># or:</span> <span class="c-fg">klim plan diff teammate.yaml</span></code></pre>
       </div>
     </figure>
   </div>

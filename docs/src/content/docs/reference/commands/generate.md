@@ -1,5 +1,5 @@
 ---
-title: "klim generate"
+title: "klim project generate"
 description: Generate CI/container configs from .klim.yaml
 ---
 
@@ -8,7 +8,7 @@ Auto-generate CI and container configuration files from your `.klim.yaml` tool r
 ## Usage
 
 ```bash
-klim generate <github-action|dockerfile|devcontainer> [flags]
+klim project generate <github-action|dockerfile|devcontainer> [flags]
 ```
 
 ## Generators
@@ -31,16 +31,16 @@ klim generate <github-action|dockerfile|devcontainer> [flags]
 
 ```bash
 # Generate GitHub Actions workflow
-klim generate github-action
+klim project generate github-action
 
 # Generate and save to file
-klim generate github-action -o .github/workflows/setup-tools.yml
+klim project generate github-action -o .github/workflows/setup-tools.yml
 
 # Generate Dockerfile with custom base image
-klim generate dockerfile --base ubuntu:22.04 -o Dockerfile.tools
+klim project generate dockerfile --base ubuntu:22.04 -o Dockerfile.tools
 
 # Generate devcontainer.json
-klim generate devcontainer -o .devcontainer/devcontainer.json
+klim project generate devcontainer -o .devcontainer/devcontainer.json
 ```
 
 ## Dev Container Features
@@ -62,6 +62,6 @@ Tools without a known feature are installed via `postCreateCommand`.
 
 ## See Also
 
-- [klim init](../init/) — Generate .klim.yaml from project files
-- [klim check](../check/) — Validate tool requirements
+- [klim project init](../init/) — Generate .klim.yaml from project files
+- [klim project check](../check/) — Validate tool requirements
 - [Team Manifests guide](../../../guides/team-manifests/)

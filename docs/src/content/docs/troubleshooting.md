@@ -41,8 +41,8 @@ A new tool's directory may not be on your `PATH` yet, or your shell cached the o
 Restart the shell, then run:
 
 ```bash
-klim health path        # show PATH conflicts and shadowed binaries
-klim health             # full environment diagnostics
+klim doctor path        # show PATH conflicts and shadowed binaries
+klim doctor             # full environment diagnostics
 ```
 
 ### klim can't load the marketplace catalog
@@ -51,7 +51,7 @@ The catalog is fetched from GitHub on first use and cached locally. If you're of
 cache, the catalog can't load. Reconnect once and run:
 
 ```bash
-klim search ripgrep --refresh    # force a fresh catalog fetch
+klim tool search ripgrep --refresh    # force a fresh catalog fetch
 ```
 
 ### Versions look stale or a tool shows "not installed" when it is
@@ -59,7 +59,7 @@ klim search ripgrep --refresh    # force a fresh catalog fetch
 klim caches scan results per host for speed. Force a rescan:
 
 ```bash
-klim list --refresh
+klim tool list --refresh
 ```
 
 In the TUI, press `r` to rescan.
@@ -77,11 +77,11 @@ your shell.
 
 ### An upgrade broke something — how do I roll back?
 
-`klim apply` auto-creates a checkpoint before it changes anything. List and roll back:
+`klim plan apply` auto-creates a checkpoint before it changes anything. List and roll back:
 
 ```bash
-klim checkpoint list
-klim rollback <checkpoint>
+klim plan checkpoint list
+klim plan rollback <checkpoint>
 ```
 
 See [plan](/reference/commands/plan/), [apply](/reference/commands/apply/), and
@@ -92,8 +92,8 @@ See [plan](/reference/commands/plan/), [apply](/reference/commands/apply/), and
 Any Health-tab fix that touches `PATH` captures a backup first. Restore it with:
 
 ```bash
-klim health path-backups list
-klim health path-backups restore-cmd <backup>
+klim doctor path-backups list
+klim doctor path-backups restore-cmd <backup>
 ```
 
 ## Getting more help

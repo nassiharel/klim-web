@@ -38,5 +38,5 @@ Add-Content $PROFILE 'klim shell completion powershell | Out-String | Invoke-Exp
 
 ## See Also
 
-- [klim hook](../hook/) — Shell hooks for auto-checking .klim.yaml
+- [klim shell hook](../hook/) — Shell hooks for auto-checking .klim.yaml
 - [Shell Integration guide](../../../guides/shell-integration/)

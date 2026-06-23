@@ -1,5 +1,5 @@
 ---
-title: "klim list"
+title: "klim tool list"
 description: List developer tools with versions, sources, and update status
 ---
 
@@ -8,7 +8,7 @@ List installed developer tools with version info, install sources, and update st
 ## Usage
 
 ```bash
-klim list [flags]
+klim tool list [flags]
 ```
 
 ## Flags
@@ -24,22 +24,22 @@ klim list [flags]
 
 ```bash
 # List all installed tools
-klim list
+klim tool list
 
 # Filter by category
-klim list --category Cloud
+klim tool list --category Cloud
 
 # Filter by install source
-klim list --source brew
+klim tool list --source brew
 
 # Combine filters
-klim list --category IaC --source brew
+klim tool list --category IaC --source brew
 
 # Show available categories
-klim list --categories
+klim tool list --categories
 
 # Force fresh scan
-klim list --refresh
+klim tool list --refresh
 ```
 
 ## Output
@@ -60,4 +60,4 @@ Each line shows:
 
 ## Caching
 
-By default, `klim list` uses a cached scan result for fast startup. Use `--refresh` to force a fresh PATH scan and version resolution.
+By default, `klim tool list` uses a cached scan result for fast startup. Use `--refresh` to force a fresh PATH scan and version resolution.

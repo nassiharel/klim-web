@@ -1,5 +1,5 @@
 ---
-title: "klim watch"
+title: "klim tool watch"
 description: Check for available tool updates
 ---
 
@@ -8,7 +8,7 @@ Check all installed tools for available updates. Designed to run periodically vi
 ## Usage
 
 ```bash
-klim watch [flags]
+klim tool watch [flags]
 ```
 
 ## Flags
@@ -21,20 +21,20 @@ klim watch [flags]
 
 ```bash
 # Human-readable output
-klim watch
+klim tool watch
 
 # JSON for scripting
-klim watch --json
+klim tool watch --json
 ```
 
 ## Scheduling
 
 ```bash
 # Cron (daily at 9am)
-0 9 * * * klim watch --json >> ~/.klim/watch.log
+0 9 * * * klim tool watch --json >> ~/.klim/watch.log
 
 # Windows Task Scheduler
-schtasks /create /tn "klim-watch" /tr "klim watch" /sc daily /st 09:00
+schtasks /create /tn "klim-watch" /tr "klim tool watch" /sc daily /st 09:00
 ```
 
 ## Output
@@ -52,7 +52,7 @@ Run 'klim' to upgrade interactively.
 
 ## Note
 
-`klim watch` always performs a fresh scan (equivalent to `--refresh`) to ensure results are authoritative.
+`klim tool watch` always performs a fresh scan (equivalent to `--refresh`) to ensure results are authoritative.
 
 ## See Also
 

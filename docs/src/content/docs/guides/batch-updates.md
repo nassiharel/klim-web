@@ -50,8 +50,8 @@ For non-interactive upgrades, you can use the standard package manager commands 
 
 ```bash
 # Show all tools with update status
-klim list
+klim tool list
 
 # Filter to a specific category
-klim list --category Cloud
+klim tool list --category Cloud
 ```

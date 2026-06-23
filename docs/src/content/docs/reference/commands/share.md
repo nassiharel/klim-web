@@ -1,5 +1,5 @@
 ---
-title: "klim share"
+title: "klim share link"
 description: Share your toolchain — generate and install from tokens
 ---
 
@@ -8,15 +8,15 @@ Share your installed tools as a compact token, or install tools from a token sha
 ## Usage
 
 ```bash
-klim share                    # generate a share token
-klim share open <token>       # install from a share token
-klim share open <token> --yes # non-interactive install
+klim share link                    # generate a share token
+klim share link open <token>       # install from a share token
+klim share link open <token> --yes # non-interactive install
 ```
 
 ## Generate a Token
 
 ```bash
-klim share
+klim share link
 ```
 
 Outputs a compact `klim:v1:...` token that encodes your installed tool names. Share it via Slack, Teams, email, or any chat.
@@ -24,7 +24,7 @@ Outputs a compact `klim:v1:...` token that encodes your installed tool names. Sh
 For scripting, request structured output:
 
 ```bash
-klim share --output json
+klim share link --output json
 # {
 #   "token": "klim:v1:...",
 #   "tool_count": 24,
@@ -37,7 +37,7 @@ The `tools` array is sorted, so the same installed set always produces the same 
 ## Install from a Token
 
 ```bash
-klim share open "klim:v1:H4sIAAAA..."
+klim share link open "klim:v1:H4sIAAAA..."
 ```
 
 Decodes the token, resolves tools from your local catalog, and installs via native package managers.
@@ -54,5 +54,5 @@ In the TUI, switch to the **★ Favorites** tab and press `s` to share just your
 
 ## See Also
 
-- [`klim export`](../export/) — Export to a YAML file (more detailed)
-- [`klim diff`](../diff/) — Compare against a token or manifest
+- [`klim share export`](../export/) — Export to a YAML file (more detailed)
+- [`klim plan diff`](../diff/) — Compare against a token or manifest

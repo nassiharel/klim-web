@@ -36,7 +36,7 @@ klim security vuln --output json
 | `--output {text,json}` | `text` | Output format. JSON goes to stdout; human progress to stderr. |
 | `--fail-on {low,medium,high,critical}` | from `config.yaml` (default: empty = never fail) | Exit code 3 if any finding meets or exceeds this severity. |
 | `--force-refresh-vulns` | `false` | Bypass the local cache and re-query OSV.dev. With this flag, a fetch failure is **not** masked by stale cache fallback — useful in CI. |
-| `--url <url>` | from `config.yaml` (default `https://api.osv.dev`) | Override the OSV.dev endpoint (testing / mirrors). Note: cache is keyed by URL, so a one-shot override writes to a different cache file than passive surfaces (`klim info`, web `/security`) read. |
+| `--url <url>` | from `config.yaml` (default `https://api.osv.dev`) | Override the OSV.dev endpoint (testing / mirrors). Note: cache is keyed by URL, so a one-shot override writes to a different cache file than passive surfaces (`klim tool info`, web `/security`) read. |
 | `--refresh` | `false` | Force a fresh PATH scan instead of using the scan cache. |
 
 ## Severity model
@@ -121,4 +121,4 @@ vuln:
 ## Related
 
 - [`klim security`](../security/) — umbrella reference
-- [`klim score`](../score/) — composite per-tool score (folds in vuln data)
+- [`klim security score`](../score/) — composite per-tool score (folds in vuln data)
