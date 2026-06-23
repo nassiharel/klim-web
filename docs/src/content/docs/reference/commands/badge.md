@@ -18,8 +18,8 @@ klim share badge [flags]
 
 | Badge | What it shows |
 |-------|---------------|
-| **klim security score** | Overall environment score X/Y graded A+..F (matches `klim security score --badge`). |
-| **klim tool catalog** | Number of installed tools. |
+| **klim score** | Overall environment score X/Y graded A+..F (matches `klim security score --badge`). |
+| **klim tools** | Number of installed tools. |
 | **klim audit** | Audit-findings count (`clean` or `N issues`). Counts klim audit warnings + infos — **not** vulnerability scan results; for CVEs use `klim security`. |
 | **klim fresh** | Percentage of installed tools currently up to date. |
 
