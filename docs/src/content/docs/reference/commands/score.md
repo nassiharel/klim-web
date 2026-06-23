@@ -58,7 +58,7 @@ klim security score --badge
 Add to your README:
 
 ```markdown
-![klim security score](https://img.shields.io/badge/klim%20score-85%2F100%20A-yellowgreen)
+![klim score](https://img.shields.io/badge/klim%20score-85%2F100%20A-yellowgreen)
 ```
 
 Generate your actual badge URL with:

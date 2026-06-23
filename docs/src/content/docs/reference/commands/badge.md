@@ -60,8 +60,8 @@ klim share badge --output yaml > badges.yaml
 Text output is Markdown — one badge per line:
 
 ```markdown
-[![klim security score](https://img.shields.io/badge/klim%20score-61%2F100%20D-orange)](https://github.com/nassiharel/klim)
-[![klim tool catalog](https://img.shields.io/badge/klim%20tools-23-blue)](https://github.com/nassiharel/klim)
+[![klim score](https://img.shields.io/badge/klim%20score-61%2F100%20D-orange)](https://github.com/nassiharel/klim)
+[![klim tools](https://img.shields.io/badge/klim%20tools-23-blue)](https://github.com/nassiharel/klim)
 [![klim audit](https://img.shields.io/badge/klim%20audit-clean-brightgreen)](https://github.com/nassiharel/klim)
 [![klim fresh](https://img.shields.io/badge/klim%20fresh-87%25-green)](https://github.com/nassiharel/klim)
 ```
